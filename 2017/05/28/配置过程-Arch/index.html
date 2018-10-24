@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>Arch-配置过程 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Arch-配置过程</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Arch-配置过程</h1><div class="post-meta">May 28, 2017<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2017/05/28/配置过程-Arch/#vcomment"><span class="valine-comment-count" data-xid="/2017/05/28/配置过程-Arch/"></span><span> 条评论</span></a><div class="post-content"><h2 id="用户环境配置"><a href="#用户环境配置" class="headerlink" title="用户环境配置"></a>用户环境配置</h2><ul>
+<li><p><strong>1 以root 用户登陆</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ 输入刚才设置的 root 密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>2 增加用户及设置密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ echo $SHELL 						// 输出 bash 路径记住,以下假设是 /bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>   // WORKS 为用户组，Wroks 为 用户名，/bin/bash 为 第一条命令的执行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ useradd -m -g WORKS -s /bin/bash Works</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>   // 考虑到提升权限，也可以添加进 whell 组，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ useradd -m -g WORKS -G whell -S /bin/bash Works</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ passwd Works							// 设置新用户密码</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<blockquote>
+<p>开始我不知道，直接使用了第一种创建用户，即没有加入 whell 组<br>后来知道了其中的缘由，所以才给出了 第二种创建用户的方法<br>详情看以下 sudo</p>
+</blockquote>
+</blockquote>
+<ul>
+<li><strong>3 sudo 配置</strong><br>默认 base 包组已经安装了 sudo 软件包<br>如果没有则安装之<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@pacman -S sudo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>编辑 /etc/sudoers 文件进行修改<br>两种修改方式</p>
+<blockquote>
+<p>A.添加一条 Works ALL=(ALL) ALL        // Works 是用户名<br>B.去掉 #%whell ALL=(ALL) ALL 前的注释号 #</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>对于 B 的前提是用户已经加入 whell 组</p>
+</blockquote>
+<ul>
+<li>另外，你还可以设置sudo密码的过期时间等，详参考<a href="https://wiki.archlinux.org/index.php/Sudo" target="_blank" rel="noopener">官方Wiki</a></li>
+</ul>
+<ul>
+<li><strong>4 安装显卡</strong><br>建议安装开源驱动，闭源驱动总是出现很多奇怪的问题，但也不一定是没问题<br>至少我总是出现问题。<br>如果你也是 N 卡，则执行以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S xf86-video-nouveau // 我的N卡型号为 GTX660 Ti</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对于其他型号已经其他显卡清参照<a href="https://wiki.archlinux.org/index.php/Xorg" target="_blank" rel="noopener">官方</a>进行安装</p>
+<ul>
+<li><strong>6 安装 X11 图形服务，我使用 Xorg</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S xorg					// 你可以选择需要的进行安装,我是默认全部安装</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者，可以这样安装，但我没试过：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S xorg-server xorg-server-utils xorg-init</span><br></pre></td></tr></table></figure></p>
+<p><strong>xorg 是安装图形界面之前必须的</strong></p>
+<ul>
+<li><strong>7 安装桌面环境 GNOME</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gnome 					// 默认安装三个桌面</span><br><span class="line">root@ pacman -S gnome-extra			// 安装标准桌面+常用软件</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上二选一安装，对于其他桌面请<a href="https://wiki.archlinux.org/index.php/Desktop_environment" target="_blank" rel="noopener">参考官方</a></p>
+<ul>
+<li><p><strong>8 安装 GDM</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gdm						// 安装 gdm 登陆管理器</span><br><span class="line">root@ systemctl enable gdm 			// 开机自启动 gdm 管理器</span><br><span class="line">root@ systemctl enable NetworkManager.service // 开机自启动网络管理</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>9 重启</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ reboot					// 重启</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>到这里，你已经可以启动到图形界面！<br>以下的设置你可以作为参考！</p>
+<h2 id="系统美化方案及一些常用设置"><a href="#系统美化方案及一些常用设置" class="headerlink" title="系统美化方案及一些常用设置"></a>系统美化方案及一些常用设置</h2><blockquote>
+<p>注意:</p>
+<blockquote>
+<p>以下都需要加上 sudo ，因为是在普通用户下执行操作，不建议在 root 用户下进行操作<br>如果一些设置(例如安装输入法等)无法及时生效，可重启一下！</p>
+</blockquote>
+</blockquote>
+<ul>
+<li><p><strong>1 字体</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S wqy-zenhei 					// 文泉字体</span><br><span class="line">root@ pacman -S adobe-source-han-sans-cn-fonts 	// 可选思源黑体</span><br><span class="line">root@ pacman -S wqy-microhei 				// 忘记了</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>2 安装输入法</strong></p>
+<ul>
+<li><strong>A.IBUS</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S ibus						// 安装 ibus</span><br><span class="line">root@ pacman -S ibus-pinyin				// 安装输入法支持输入中文</span><br><span class="line"> 或者</span><br><span class="line">root@ pacman -S lib-ibus-pinyin		// 中文支持库，好像是</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一般情况下重启后会自启动ibus<br>如果没有则在 ～/bashrc 添加以下代码</p>
+<blockquote>
+<p>export GTK_IM_MODULE=ibus<br>export XMODIFIERS=@im=ibus<br>export QT_IM_MODULE=ibus</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>或者图形界面找到 ibus 首选项，添加输入法</p>
+</blockquote>
+<ul>
+<li><strong>B.FCITX</strong><br>安装之前请确保已经禁用 ibus(有坑)<br>此禁用ibus的方法已经失效，如有其他方法请发邮件告诉我，我通过删除 ibus 而解决的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ gsettings set org.gnome.settings-daemon.plugins.keyboard active false	// 禁用 ibus</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S fcitx-im fcitx-configtool		// 安装 fcitx 和 设置</span><br><span class="line">root@ pacman -S fictx-sogoupinyin		// 安装搜狗拼音</span><br><span class="line">root@ fcitx-configtool		// 添加搜狗拼音</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>另外在对于 GNOME GDM 管理器 请在~/.xprofile 文件中输入以下(没有该文件则创建之)</p>
+<blockquote>
+<p>export GTK_IM_MODULE=fcitx<br>export QT_IM_MODULE=fcitx<br>export XMODIFIERS=”@im=fcitx”</p>
+</blockquote>
+</blockquote>
+<p>重启即可</p>
+<blockquote>
+<ul>
+<li><strong>安装 fcitx 后的几个问题</strong></li>
+</ul>
+<ol>
+<li>左下角多出了一个系统托盘，而顶部条则没有，暂时不知道如何配置</li>
+<li>Shift 切换输入法为英文输入法时，状态条总是显示不会隐藏</li>
+<li>在终端输入 fcitx -r 后，会临时没有左下角托盘，且切换输入法为英文时状态条自动消失，短时间后又恢复了<br>如果你已经解决了上面的问题请发邮件给我谢谢！</li>
+</ol>
+</blockquote>
+<ul>
+<li><strong>3 安装 AUR 源，包管理 yaourt</strong><br>网上查找很多资料都说编辑 /etc/pacman.conf 文件加入 </li>
+</ul>
+<blockquote>
+<blockquote>
+<p>[archlinuxcn]<br>root@The Chinese Arch Linux communities packages.<br>SigLevel = Optional TrustAll<br>Server = <a href="https://mirrors.ustc.edu.cn/archlinuxcn/$arch" target="_blank" rel="noopener">https://mirrors.ustc.edu.cn/archlinuxcn/$arch</a></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>然后执行 # pacman -Syu yaourt 即可。你可尝试一下。<br>但我屡试不行，最后的解决方法如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@ cd home						// 在home 目录下操作</span><br><span class="line">root@ mkdir yurt					// 新建一个空文件夹准备操作</span><br><span class="line">root@ cd yurt						// 进入该空文件夹</span><br><span class="line">root@ git clone https://aur.archlinux.org/package-query.git	// 下载 package-query 软件包</span><br><span class="line">root@ cd package-query				// 进入该软件包</span><br><span class="line">root@ makepkg -si						// 编译s并安装i</span><br><span class="line">root@ cd ..								// 回到上一层目录</span><br><span class="line">root@ git clone https://aur.archlinux.org/yaourt.git	// 下载 yaourt 软件包</span><br><span class="line">root@ cd yaourt						// 进入该软件包</span><br><span class="line">root@ makepkg si						// 编译s并安装i</span><br><span class="line">root@ yaourt -Syu -devel -aur	// 同步数据库、升级包、搜索 AUR</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>则成功安装了 yaourt 。<br>参考的地址为： <a href="https://archlinux.fr/yaourt-en" target="_blank" rel="noopener">https://archlinux.fr/yaourt-en</a></p>
+</blockquote>
+<ul>
+<li><p><strong>3 一些常用软件</strong></p>
+<ul>
+<li><p><strong>A.p7zip    解压 zip 文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S p7zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>B.GNOME 软件中心</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gnome-s -oftware</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>C.zim 桌面维基，用于记录笔记和文档</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>D. Firefox    火狐浏览器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S firefox</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>E.chrome    谷歌浏览器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ yaourt -S google-chrome		// 前提要翻墙参见后面翻墙</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>F.flash        网页图片视频专用插件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ yaourt -S flashplugin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>G.ssh            密匙</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S openssh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>H. gnome-tweak-tool    GNOME 管理设置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gnome-tweak-tool</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>I.screenfetch 可在终端输出计算机信息的软件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S screenfetch</span><br><span class="line">运行</span><br><span class="line">root@ screenfetch</span><br><span class="line">自动运行 在 ～/bashrc 中加入单行的 screenfetch 即可</span><br><span class="line">下次打开终端将自动运行并输出。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>J.gedit        文本编辑器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gedit</span><br><span class="line">vim 默认已经安装，如果没有执行</span><br><span class="line">root@ pacman -S vim</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>K.邮件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S Thunderbird</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>L.图片编辑</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S gimp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>L.WeChat</strong><br>对于以上所有软件，如果 pacman 下载失败，<br>则更新一下 # pacman -Syy 软件源后再试一下。<br>如果出现 pacman 找不到软件，则使用 yaourt -S 软件名 来安装</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="美化系统"><a href="#美化系统" class="headerlink" title="美化系统"></a>美化系统</h2><p>需要美化三个地方，分别是 gnome、gdm、grub 的美化</p>
+<h3 id="gnome"><a href="#gnome" class="headerlink" title="gnome"></a>gnome</h3><ul>
+<li><p><strong>图表主题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num 图标主题</span><br><span class="line">root@ yaourt -S numix-circle-icon-theme-git</span><br><span class="line">paper 图标主题</span><br><span class="line">root@ yaourt -S paper-icon-theme-git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>GTK 主题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arc 主题</span><br><span class="line">root@ yaourt -S gtk-theme-arc-git</span><br><span class="line">paper 主题</span><br><span class="line">root@ yaourt -S paper-gtk-theme-git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>gnome-shell 主题</strong><br>Candy 主题<br>参照这里下载 <a href="http://www.linuxidc.com/Linux/2016-08/134383.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2016-08/134383.htm</a><br>对于 Pper 主题参照这个地址 <a href="https://snwh.org/paper/download" target="_blank" rel="noopener">https://snwh.org/paper/download</a></p>
+</li>
+<li><strong>gnome 扩展</strong><blockquote>
+<p>Auto move windows<br>Coverflow alt-tab            // alt+tab 是 3D 显示<br>Dash to dock                            // 配置工作条<br>Dynamic panel transparency        // 配置顶栏<br>Frippery move clock                // 顶部时间移到右边<br>Hide activities button            // 去掉右上角的活动按钮<br>Hide workspace thumbanails        //隐藏 Overview 视图右边的工作区栏<br>No topleft hot corner                // 禁止鼠标停靠左上角进入活动视图<br>Openweather                            // 顶栏显示天气预报<br>Pixel saver                            // 最大化隐藏标题栏<br>Remove dropdown arrows            // 去掉右上角的下拉箭头<br>Status itile bar                    // 实现顶部标题<br>Transparent top bar                // 透明顶栏<br>User themes                            // 要更换 shell 主题必须开启<br>Workspace indicator                //顶栏显示当前工作区号<br>Input method panel                 //輸入法面板 — 輸入法系統托盤</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="一些设置"><a href="#一些设置" class="headerlink" title="一些设置"></a>一些设置</h3><ul>
+<li><strong>1.gnome-tweak-tool 字体设置</strong><blockquote>
+<p>   窗口标题：Cantarell Bold    11<br>   界面：Serif Regular            11<br>   文档：Sans Regular            11<br>   等宽：Monospace Regular    11</p>
+</blockquote>
+</li>
+<li><p><strong>2. 窗口标题栏按钮重新排序或更改位置</strong></p>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ gsettings set org.gnome.desktop.wm.preferences button-layout &apos;:minimize,maximize,close&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><blockquote>
+<p>其中冒号表示按钮出现的位置</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="gdm"><a href="#gdm" class="headerlink" title="gdm"></a>gdm</h3><ol>
+<li><p>更改 GDM 壁纸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@ cd ~</span><br><span class="line">root@ curl -L -O http://archibold.io/sh/archibold</span><br><span class="line">root@ chmod +x archibold</span><br><span class="line">root@ sudo mv archibold /usr/bin</span><br><span class="line">root@ archibold login-background /home/pic/a.jpg</span><br><span class="line">其中 /home/pic/a.jpg 为 背景图片的地址</span><br><span class="line">重启后登陆界面即变成你的壁纸了</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改 GDM 主题</p>
+</li>
+<li>参考一下使用 gdm3setup 软件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ yaourt -S gdm3setup</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>其中包括了开启指纹等配置！</p>
+</blockquote>
+<h3 id="grub"><a href="#grub" class="headerlink" title="grub"></a>grub</h3><ol>
+<li>更改 GRUB 背景图<blockquote>
+<p>修改 /etc/default/grub    文件<br>将 #GRUB_THEME=”主题地址” 去掉注释号，并添加图片路径</p>
+</blockquote>
+</li>
+<li>更改 GRUB 主题<blockquote>
+<p>主题一般放置在 /boot/grub/themes 下<br>修改 /etc/default/grub 文件<br>将 #GRUB——THEME=”/boot/grub/themes/主题包/theme.txt”<br>去掉注释，并添加主题包的 theme.txt 文件路径</p>
+</blockquote>
+</li>
+<li>更新GRUB<br>root@ grub-mkconfig -o /boot/grub/grub.cfg</li>
+</ol>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2017/05/28/配置过程-Arch/" data-id="cjnn5im5a0013vrlj8q5caq8f" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3aQW6DQAwF0Nz/0nSbqgK+bajE8GZVRYThEcm1x/584rV9re9P/l6TX5/scvHCwMB4LGM7XMePdfyt/EUk+57sgoGB8QLG3sbVcJkE3/m+GBgYGMnt9j5JgmMS3DEwMDAmjEkArd4ZAwMDo1rEJtQ81OaF7sW1OAYGxgMZ+an7//99S38DAwPjUYytuKpFbDX521oLAwNjbcZ8DOJaTJ72YWBgvJmRF6VJ2+D4gfJRsyhZxMDAWJTRq3p7BWc++FVNIjEwMDCqCdwkvWu2RTEwMJZm5DftjY717pwnlCf9WAwMjCUY1RStOgbRK2WTcF/+n4CBgfFwRv7Q89OthJQc9v26HgMDY2lGntL1SMkdkoZoFHwxMDCWZlwbUnvtgZx08l0MDIzlGHlpWg2LyR0mgbhcxGJgYCzBqAbcfISrekhXTg0xMDBeyZgfkM0Da3kCFwMDY1FGdcRhctyWJI55yMbAwHgzY1LE5kle/tDlVigGBsaijMkgV95izAvXZgMVAwPjBYxe8dkrR/MXh4GBgVFN0arbXzvScfJaMTAwFmVsxZU8Si9YV8P97u+AgYGxHKMX7O4I0NUmxKjBiYGB8UBGL8hWW4/VJmW5hMbAwHgBYzJgce14WS8cY2BgYEwC7lUDZ9G0CAYGBsYNBWr1WydFLAYGxtKMpIhNjubvDs27aSgGBsbSjEnpmA+Kzcvd6l4YGBhLMH4AidhVgye3GmgAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2017/06/07/包管理机制-1-Arch/">Arch 包管理</a><a class="next" href="/2017/05/28/安装过程-Arch/">Arch-基础安装</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

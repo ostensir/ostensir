@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>Arch-基础安装 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Arch-基础安装</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Arch-基础安装</h1><div class="post-meta">May 28, 2017<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2017/05/28/安装过程-Arch/#vcomment"><span class="valine-comment-count" data-xid="/2017/05/28/安装过程-Arch/"></span><span> 条评论</span></a><div class="post-content"><h2 id="Arch-Linux-安装记录"><a href="#Arch-Linux-安装记录" class="headerlink" title="Arch Linux 安装记录"></a><strong>Arch Linux 安装记录</strong></h2><ul>
+<li><strong>读者必看</strong></li>
+<li>如果你是第一次接触 ArchLinux，请务必看完这一段</li>
+</ul>
+<ol>
+<li><p>我的系统信息：</p>
+<blockquote>
+<p>系统镜像版本：archlinux-2017.05.01-x86_64.iso<br>系统版本：x86_64 Linux 4.11.2.1<br>GNOME 版本：3.24.2</p>
+</blockquote>
+</li>
+<li><p>分区: </p>
+<blockquote>
+<p>我没亲自尝试过，因此没有写上来。如果你是新手，请务必另外在网上搜索并准   备一篇分区方法的文章。</p>
+</blockquote>
+</li>
+<li><p>网络:</p>
+<blockquote>
+<p> 在网络配置那一部分不详细，因为我是路由器分的有线网络。<br>如果你是新手，请务必另外网上&gt; 搜索网络配置。例如 wifi 配置方法的文章。</p>
+</blockquote>
+</li>
+<li><p>本教程过长，因此分两卷：</p>
+<blockquote>
+<p>上卷主要讲解 安装前的装备 到 安装后的系统设置<br>下卷则主要讲解用户环境配置，对于高手可以忽略下卷，但也不一定可以找到你需要的东西。</p>
+</blockquote>
+</li>
+<li><p>在完成安装基本系统后的设置总体分为两部分：系统设置、用户环境配置</p>
+<blockquote>
+<p>系统设置 – 是在安装完系统之后重启之前必须要做的设置，否则后果很麻烦。<br>用户环境配置 – 是安装完系统并重启之后可按自己的意愿进行配置。</p>
+</blockquote>
+</li>
+<li>声明:<blockquote>
+<ol>
+<li>以下所有操作，都是作者亲自操作而写下的，一般只要系统版本差别不大，应该没什么问题的。</li>
+<li>新手按此教程流程操作则可以成功安装完整个用户系统。但事情没有绝对，如有问题，欢迎发送邮件。</li>
+<li>欠缺的网络配置和分区方法，待以后有亲自操作后再更新本文章，对此表示抱歉<blockquote>
+<p>参考: <a href="https://wiki.archlinux.org/index.php/Network_configuration#Device_driver" target="_blank" rel="noopener">网络配置</a></p>
+</blockquote>
+</li>
+<li>对于 U盘 无法启动，推荐使用: Linux dd 命令、Windows Rufus 软件<blockquote>
+<p>参考：<a href="https://wiki.archlinux.org/index.php/USB_flash_installation_media" target="_blank" rel="noopener">官方</a></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><strong>下载 Arch</strong><blockquote>
+</blockquote>
+官方教程：<br>浏览器地址栏输入 <a href="https://archlinux.org" target="_blank" rel="noopener">https://archlinux.org</a><br>网页右上角单击 Downcload<br>在新页面开头找到 Installation Guide 点击进入<br>下拉网页，在右边选择   中文简体 即可开始阅读<blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="一、安装之前的配置"><a href="#一、安装之前的配置" class="headerlink" title="一、安装之前的配置"></a><strong>一、安装之前的配置</strong></h3><blockquote>
+</blockquote>
+<p>注意：<br>这里的配置都必须是立即生效的，因为这部分的所有操作都是针对 u盘的，重启后则失效！<br>所以别指望做什么设置然后重启u盘系统后会生效！</p>
+<blockquote>
+</blockquote>
+<ul>
+<li><p><strong>1  键盘布局（默认 us，是二位的字母编码表，中国为 cn）可忽略</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ loadkeys us</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>2 连接网络</strong><br>测试网络连接是否正常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ ping -C 3 archlinux.org</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>A. 有线配置（默认已启动模块并自动连接，如果没有输入以下命令</strong><br><a href="https://wiki.archlinux.org/index.php/Network_configuration#Device_driver" target="_blank" rel="noopener">参考官方</a></p>
+</li>
+<li><p><strong>B. 无线配置</strong><br><a href="https://wiki.archlinux.org/index.php/Wireless_network_configuration" target="_blank" rel="noopener">参考官方</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+</blockquote>
+<ul>
+<li><p><strong>2 更新系统时间</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ timedatectl set-ntp-true		// 开启 systemd-timesyncd 时间服务</span><br><span class="line">root@ timedatectl status 				// 确认时间是否正确</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>3 判断启动模式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ ls /sys/firmware/efi/efivars</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>如果提示没有该目录(Not The Directory) 类似字样，则系统以 BIOS 摸索启动<br>反之为 EFI 模式启动<br>这对于后面分区和安装 GUIB 有帮助</p>
+<blockquote>
+</blockquote>
+<h3 id="二、安装之前的准备"><a href="#二、安装之前的准备" class="headerlink" title="二、安装之前的准备"></a>二、安装之前的准备</h3><ul>
+<li><strong>1. 查看硬盘浏览分区情况</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@ fsdisk -l</span><br><span class="line">或者</span><br><span class="line">root@ lsblk -l</span><br><span class="line">如果你有多块硬盘</span><br><span class="line">root@ lsblk -l /dev/sda		// 只查看 /dev/sda 这块硬盘的分区情况</span><br><span class="line">如果你希望看到分区的详细信息(可作为后面挂载分区时查看分区是否正常被挂载)</span><br><span class="line">root@ lsblk /dev/sda -o NAME,FSTYPE,SIZE,MOUNTPOINT</span><br><span class="line">这将包括分区的 名称、文件系统、大小、挂载点</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+</blockquote>
+<ul>
+<li><strong>说明：</strong></li>
+<li><strong>在这里，你要确定好要进行操作的硬盘(如果你也有多块硬盘的话)和分区。</strong><blockquote>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><strong>2 开始分区</strong><br>我事先已经分好了四个区，分别是 <blockquote>
+</blockquote>
+/dev/sda1     boot     1G                (主分区)<br>/dev/sda2     /         50G            (主分区)<br>/dev/sda3     swap     4G                (主分区)<br>/dev/sda4    /home    剩余所有空间    (逻辑分区)<blockquote>
+</blockquote>
+</li>
+<li><strong>其他参考官方教程，或在以后我有亲历再更新</strong></li>
+<li><p><strong>3 格式化分区</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ mkfs.ext2 /dev/sda1		(格式化我的 boot 分区 /dev/sda1)</span><br><span class="line">root@ mkfs.ext4 /dev/sda2		(格式化我的 root 分区/dev/sda2)</span><br><span class="line">root@ mkfs.ext4 /dev/sda4		(格式化我的 home 分区/dev/sda4)</span><br><span class="line">root@ mkswap /dev/sda3			(格式化我的 swap 分区/dev/sda3)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>4 挂载分区</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@ swapon /dev/sda3				// 先激活 swap 分区</span><br><span class="line">root@ mount /dev/sda2 /mnt			// 先挂载 / 分区到 /mnt</span><br><span class="line">root@ mkdir /mnt/root					// 创建 boot 文件夹</span><br><span class="line">root@ mkdir /mnt/home					// 创建 home 文件夹</span><br><span class="line">root@ mount /dev/sda1 /mnt/boot	// 挂载 boot 分区到 /mnt/boot</span><br><span class="line">root@ mount /dev/sda4 /mnt/home	// 挂载 home 分区到 /mnt/home</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>说明：<br>如果你跟我一样独立出几个分区，则无论如何要先挂载根分区，再挂载其他分区<br>如果的所有目录都在一个分区里，则只需要挂载根分区就可以了<br>在挂载多个分区的时候，应该先挂载根分区后再创建要挂载其他分区的文件夹<br>只有挂载根分区后在 /mnt 下创建的文件夹才保存在根分区里面</p>
+<blockquote>
+</blockquote>
+<ul>
+<li><p><strong>5 选择原(这一步同样很重要)</strong></p>
+<blockquote>
+</blockquote>
+<p>官方：<br>按照官方提示要编辑 /etc/pacman.d/mirrorlist 文件<br>把要启用的源取消注释，并放到最前面<br>我：<br>打开 /etc/pacman.d/mirrorlist 文件后<br>发现所有源已全部被启用，经过多次测试后且安装成功的方法如下</p>
+<blockquote>
+</blockquote>
+</li>
+<li><p><strong>安速度排序所有源：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ cd /etc/pacman.d					// 进入 pacman.d 文件夹</span><br><span class="line">root@ cp mirrorlist mirrorlist.backup // 备份出一个源文件</span><br><span class="line">root@ rankmirrors -n 6 mirrorlist.backup &gt; mirrorlist</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对 mirrorlist.backup 文件进行安速度排序，并选择 6 个最快的源<br>复制到 mirrorlist。<br>稍等一会儿按下 ctrl + C 即可</p>
+<blockquote>
+</blockquote>
+<ul>
+<li><strong>注意：</strong><br>此操作会删除 mirrorlist 文件的内容，并写入新的内容。<br>但 mirrorlist.backup 文件不会改变，由于该文件被保存在 u 盘下的目录<br>因此 u盘断电，或是重启后该文件就不存在了。<br>另外，这里所指定的源在安装完后也一起被复制到新的系统下。<br>在执行上面命令后会出现一个光标不停的闪，不用理会，<br>系统正在一个一个源的测试。稍微等几分钟，按下 ctrl+c 结束进程</li>
+<li><strong>说明：</strong><br>如果你选择的源地址是过时的，则系统会无法完全安装，即可能欠缺一些软件<br>如果你选择的源地址速度过慢，则整个系统安装过程可能持续太久<br>且软件下载也肯能不全<blockquote>
+</blockquote>
+<h3 id="三、开始安装基本系统"><a href="#三、开始安装基本系统" class="headerlink" title="三、开始安装基本系统"></a>三、开始安装基本系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ pacstrap /mnt base 		// 安装 base 包组，即一系列需要的软件包的总称</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>耐心等待，没出错的情况下安装成功。<br>如有出错，请检查分区挂载是否正确以及重新更改源，再执行该操作<br>如此重复之，成功安装则忽略。</p>
+<h3 id="四、安装之后的一些基础配置"><a href="#四、安装之后的一些基础配置" class="headerlink" title="四、安装之后的一些基础配置"></a>四、安装之后的一些基础配置</h3><ul>
+<li><p><strong>1 创建 Fstab 文件(管理开机自动挂载分区)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br><span class="line">root@ cat /mnt/etc/fstab 						// 检查 fstab 文件是否正确</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>2 更改系统根目录使用 Chroot 软件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ arch-chroot /mnt</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当安装好系统时，我们所在的目录位于 u 盘 中的系统<br>以上操作将切换根目录为新安装的系统。<br>接下来的所有设置，都是针对新系统进行配置</p>
+<ul>
+<li><strong>3 配置时区</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>时区设置为上海，从命令中可见，实际上就是对Shanghai 这个文件进行软连接</p>
+<ul>
+<li><p><strong>4 配置时间</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ bwclock --systohc -utc			// 时间设置为 UTC</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>5 配置系统本地化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ vim /etc/locale.gen					// 编辑 locale.gen 文件，把要启用的格式取消注释即可,例如 zh_cn.UTF-8,建议启用 UTF8 的 编码</span><br><span class="line">root@ locale-gen								// 生成本地化</span><br><span class="line">root@ echo LANG=en_US.UTF-8 &gt; etc/locale.conf // 设置要作为默认的格式。这里建议使用 en_US.UTF-8 格式，以免命令行出现乱码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>6 键盘布局</strong><br>  默认即可</p>
+</li>
+<li><strong>7 设置主机名并更改 hosts 文件</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ echo WORK &gt; /etc/hostname		// WORK 是我的主机名，也可以之间编辑 /etc/hostname 文件进行修改</span><br><span class="line">root@ vim /etc/hosts						// 将以下格式添加在 END 前面</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<hr>
+<h2 id="127-0-1-1-WORK-lcoaldomain-WORK"><a href="#127-0-1-1-WORK-lcoaldomain-WORK" class="headerlink" title="127.0.1.1  WORK.lcoaldomain  WORK"></a>127.0.1.1  WORK.lcoaldomain  WORK</h2></blockquote>
+<ul>
+<li><strong>8 配置网络</strong><br>刚安装完系统，默认网络已经被启用了，但重新开机后便没有了。<br>因此设置开机自动开启网络服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@systemctl enable dhcpcd		// dhcpcd 是一个守护进程，用于探测有线设备</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果还是不行，请<a href="https://wiki.archlinux.org/index.php/Network_configuration#Device_driver" target="_blank" rel="noopener">参考官网</a><br>关于无线，请<a href="https://wiki.archlinux.org/index.php/Wireless_network_configuration" target="_blank" rel="noopener">参考官网</a></p>
+<ul>
+<li><p><strong>9 设置 root 密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ passwd 								// 输入两次密码回车键结束</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>10 安装引导GRUB</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ pacman -S grub					// 下载安装 GRUB2</span><br><span class="line">root@ grub-install --target=i286-pc /dev/sda		// 安装 grub 引导</span><br><span class="line">root@ pacman -S os-prober				// 安装该软件包可检测出其他系统</span><br><span class="line">root@ grub-mkconfig -o /boot/grub/grub.cfg	// 更新GRUB设置并生成配置文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>10 处理后事以及重启</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ exit 					// 退出当前系统，回到 u 盘系统</span><br><span class="line">root@ umount -R /mnt 	// 卸载已被挂载的分区，即新系统</span><br><span class="line">root@ reboot				// 重启</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2017/05/28/安装过程-Arch/" data-id="cjnn5im580010vrljnezuxnz6" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aQXLDIBAEQP//08oDHMkzILtK0JxStgK0Dyt2l9crHsfJeH/m/fn3b5NVXt8YGBgYj2UclyN55pqXwMbWxcDA2I1xtvDZM0nAvQ6jY+uefo6BgYFxeVxrQ3AS3DEwMDBmGMmR7q7QjIGBgdEmsTOVrqSg9qNcHAMD44GMvOr++7+/0t/AwMB4FGOm3J+kpu3h7xgaGBgYazPmr0Hci8mPfRgYGPswxi5V5A3OPPWdmQcDA2MHRv55vUAciNsf65+Ai4GBsRmjbSiO8VrS6Q+NgYGxDSMJfG1JLi+x5eH+tGqIgYGxMSPZXIIfC+vRbBgYGBsw8iJX3h4YOzK2x8TTxgAGBsZCjHbTbVqbFNHaQ+GHTiwGBsaijGS6ZOE27OabHruQgYGBsRKjThrLhHbs6lh79MTAwFib0YbONpVti3r5xYsi7GJgYDyckU/UXsWYD6x1qMXAwNiAcVfQzH+g5G0QvQwwMDCWZnxv03n5rJ1nMDvHwMB4LCM/5LVhsb08MdWKwMDA2IbxvcXG2g/FMREDA2MbRjtF23QcTEeTFwMGBsaijKMcY+luGzrzFmbxxsDAwHgsYybY5aW6e2eoa4cYGBhLMPKrWu0hr20GtFc0MDAwdmPMhM78clhbtqsbAxgYGBhDiWsOmEpTMTAwMMq2Qb7p9r8+JLEYGBhLM9rQOX85rOiyBsEdAwNjbcZU6limo9ebaJNhDAyMDRh/aXG8KgOx3DMAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2017/05/28/配置过程-Arch/">Arch-配置过程</a><a class="next" href="/2016/11/16/package/">yum 包管理器</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

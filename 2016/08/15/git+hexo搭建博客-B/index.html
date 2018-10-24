@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>hexo 搭建博客 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">hexo 搭建博客</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">hexo 搭建博客</h1><div class="post-meta">Aug 15, 2016<span> | </span><span class="category"><a href="/categories/hexo/">hexo</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2016/08/15/git+hexo搭建博客-B/#vcomment"><span class="valine-comment-count" data-xid="/2016/08/15/git+hexo搭建博客-B/"></span><span> 条评论</span></a><div class="post-content"><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>本文使用以下工具来搭建博客：</p>
+<ul>
+<li>使用 Github 网站来存放博客数据</li>
+<li>使用 Github Page 功能来提供 100M 存储空间</li>
+<li>使用 Git 工具来提交博客数据</li>
+<li>使用 Node.js 来生成静态网页</li>
+<li>使用 Hexo 工具来管理博客<br>本次搭建所使用的桌面环境： Manjaro 17 Gnome 3<a id="more"></a>
+</li>
+</ul>
+<p>依赖关系：</p>
+<ul>
+<li>hexo 依赖 nodejs 来生成网页代码</li>
+<li>hexo 依赖 git 来发布网站</li>
+<li>git 与 github 配合来进行版本控制和通信</li>
+</ul>
+<h1 id="安装必要软件"><a href="#安装必要软件" class="headerlink" title="安装必要软件"></a>安装必要软件</h1><ol>
+<li><p><strong>Git 安装:</strong><br><code>$ sudo pacman -S git</code></p>
+</li>
+<li><p><strong>Nodejs 安装:</strong>    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bash $ sudo pacman -S nodejs npm</span><br><span class="line">```    </span><br><span class="line">为了确保 npm 能正常安装插件需检查是否已安装 gcc     </span><br><span class="line">如果没有： `sudo pacman -S gcc make`    </span><br><span class="line">*********</span><br><span class="line">---</span><br><span class="line">3. **Hexo 安装:**   </span><br><span class="line">Hexo 已经被打包好了并存放于 AUR 仓库    </span><br><span class="line">因此我们可以从 AUR 安装 hexo 软件包    </span><br><span class="line">安装之前确保系统已经设置 AUR 源    </span><br><span class="line">我们可以使用 yaourt 来安装： `yaourt -S hexo-cli`</span><br><span class="line"></span><br><span class="line"># 本地搭建博客仓库</span><br><span class="line">说明：仓库 在系统本地实际上就是一个目录（文件夹）</span><br><span class="line">准备：    </span><br><span class="line">+ 想好一个位置用于放置自己的博客（e.g ~/）</span><br><span class="line">+ 想好一个名字用于命名自己的仓库（e.g blog）</span><br><span class="line"></span><br><span class="line">开始：    </span><br><span class="line">+ 创建博客本目录 `mkdir ~/blog`</span><br><span class="line">+ 进入博客根目录 `cd ~/blog`</span><br><span class="line">+ 初始化博客仓库 `hexo init`</span><br><span class="line">+ 安装博客组建包 `npm install`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo server	# 然后在浏览器输入这里给出的网址即可访问</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如有占用端口可执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000 <span class="comment"># 改为其他端口</span></span><br></pre></td></tr></table></figure>
+<p>本地搭建先到这里，但还没完！精彩还在后面</p>
+<h2 id="注册-Github-帐号"><a href="#注册-Github-帐号" class="headerlink" title="注册 Github 帐号"></a>注册 Github 帐号</h2><p><a href="http://xbinhome.org/2016/08/15/access/" target="_blank" rel="noopener">注册帐号和创建远程仓库系列</a></p>
+<h2 id="三、配置-SSH-公钥"><a href="#三、配置-SSH-公钥" class="headerlink" title="三、配置 SSH 公钥"></a>三、配置 SSH 公钥</h2><p>要让本地与远程 Github 网站建立联系，你还需要配置一下 ssh key 即 本地密匙<br>但这可能、或者、不是必须的，但有密匙能确保你通信提交文章不会被人加入一些东西。</p>
+<h3 id="这里需要用到："><a href="#这里需要用到：" class="headerlink" title="这里需要用到："></a>这里需要用到：</h3><pre><code>你注册 Github 时的邮箱
+你的 Github 用户名
+准备一个你向远程博客更新文章时的密码（不是必须的）
+</code></pre><h3 id="条件："><a href="#条件：" class="headerlink" title="条件："></a>条件：</h3><pre><code>Ubuntu 系统下自动安装了 ssh ，你如果没有或者删了，需要安装上。
+关于 ssh key 安装方法 google ！
+</code></pre><h3 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh				<span class="comment">#切换到home主目录下的 .ssh 文件夹</span></span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">"邮箱地址"</span>	<span class="comment">#双引号不能省略喔，你省略了别说是我教你的。</span></span><br></pre></td></tr></table></figure>
+<p>出现</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): <span class="comment">#输入你想好的密码，你可以可以直接回车不配置。</span></span><br></pre></td></tr></table></figure>
+<p>出现<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter same passphrase again: <span class="comment"># 要求你再输入一次密码，如果你上面回车，这里也是一起回车</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你两次都回车，在你提交文章到博客的时候，就不会要求输入密码。<br>关于密匙的用处我上面已经说了！看个人爱好了！<br>配置完后会出现一个美丽的方框，说明配置成功了</p>
+<p>接下来请确保你文件管理器可以查看隐藏文件，没有可以 Ctrl + h 即可<br>然后进入 home 目录下 打开 .ssh 文件夹你会看到多出两个文件 id_rsa 和 id_rsa.pub<br>一个是 公用密匙，一个是 私用密匙。我们要用的是 id_rsa.pub 。<br>打开 id_rsa.pub 文件复制里面的全部内容，喜欢命令行的可用命令，cat 或 vim 。<br>打开浏览器登录到 Github 网站，<br>单击 settings（设置）-&gt; 单击左边的 Deploy keys （部署密匙）<br>这时会进入一个对话框。<br>把你复制的密匙粘贴到 key 框里，Title 不用管，要管页可以，我是随便填了。<br>然后单击 add key （加入密匙）</p>
+<p>现在进行本地测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com 		<span class="comment">#就这样，直接回车</span></span><br></pre></td></tr></table></figure>
+<p>出现 提示要你输入 yes 和 no ，妈的我输入 y 不行，要 yes 这个注意了 然后回车<br>出现一个提示，如果末尾有一句 but GitHub not provide shell access. 说明添加密匙成功了</p>
+<p>最后还有一个步骤，据说要配置用户名和邮箱，据说还可以是别的邮箱和随便起一个用户名。<br>但我用的是 Github 用户名和邮箱。你们自己尝试。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"用户名"</span> <span class="comment"># 引号不能省</span></span><br><span class="line">$ git config --global user.email <span class="string">"邮箱"</span></span><br></pre></td></tr></table></figure>
+<p>好了 SSH KEY 配置成功了！真是繁琐的一步！<br>网上一些旧的资料可以不用密匙，但不知道对于最新的 ubuntu 和 Github 是否管用就不知道了</p>
+<h2 id="四、开始远程搭建"><a href="#四、开始远程搭建" class="headerlink" title="四、开始远程搭建"></a>四、开始远程搭建</h2><p>打开浏览器登录到 Github 在仓库管理页面左边蓝色按钮 clone or download 单击小三角形<br>然后会下拉一个框，单击在下拉框左上角的 Use SSH ，然后复制中间那条密匙连接。<br>ok ，回到本地，进入你创建的仓库文件夹目录下打开 _config.yml<br>修改或添加这几行内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git <span class="comment"># 类型为 git</span></span><br><span class="line">  repo:  <span class="comment">#粘贴你刚才复制的 类似于：git@github.com:用户名/仓库名.git</span></span><br><span class="line">  branch: master 分支</span><br><span class="line">  message: <span class="string">'站点更新：&#123;&#123;now&#125;(YYY-MM-DD HH:mm:ss)&#125;'</span>   我也不知道干嘛的，反正我是照弄了。</span><br></pre></td></tr></table></figure>
+<p>type repo branch message 前面两个空格，： 后面一个空格 切记，出错将不能访问。</p>
+<p>ok ，最后一个步骤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save 	<span class="comment">#保存配置</span></span><br><span class="line">hexo clean 							<span class="comment">#删除缓存文件</span></span><br><span class="line">hexo generate 						<span class="comment">#建立 html 文件</span></span><br><span class="line">hexo deploy 							<span class="comment">#推送到网站</span></span><br></pre></td></tr></table></figure>
+<p>浏览器输入 仓库名.github.io 能正常打开就 ok 了</p>
+<blockquote>
+<p>本文永久连接: <a href="http://www.guib.in" target="_blank" rel="noopener">http://www.guib.in</a></p>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2016/08/15/git+hexo搭建博客-B/" data-id="cjnn5im310008vrlj4ncrfq0n" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQY7jMAwEwPn/p73AXgfOdpOZwUYunQLbsVQ+ECKpr694XH/H3fXvd6+bkcySPDkcGBgYH8u4Xo47RgvLed/njT4KBgbGAxivg2w7ZYvP33B7HQMDA6Pc/OXLnb0HAwMDIw+mr6e/W9DsXxgYGBj7ZeVLbGd5cy6OgYHxgYy2MfCbv3+wv4GBgfEhjKscbZmsTYOHq8LAwDiaMWtP5nFvDy4KeRgYGI9h5A2ANh2dNSyLlBUDA+NQRrItSw5btO9518EyDAyMJzCS26+vJFNu3p83HjAwME5lbBqEm6MSm7sYGBhPY8w6g+1Bjc02NEmVMTAwzma05a1Nm7PdLBZ3MTAwjmYkKWIeKIfZc5C+RuU/DAyMQxnvKpa1rcpNPR8DA+NpjFmIbLeGs+eHxy8wMDAOZfzSd4oDa/779uQIBgbGoYw8oZ2V0tr/5k1TDAyM5zDyEltdzxstNAnu9Q4UAwPjOEbetkw2c216nF/BwMA4m7HZwG3Ca5Ik15VCDAyMoxl5yGtLafsDGdGHxsDAOJrRTr/agcapbPKZ/rHDxcDAOIhxlSPfMs4Oe82OemBgYJzNaINdW57bBNZ9WxQDA+MkRlvunwXctp2QP4OBgfEcxuyY16Y814ZjDAwMjE1pLCmxzYp69ZkRDAwMjDKxbGGzFBoDA+M5jFmYy49/tXcLAAYGxgMY72oMbJLeWXnuR/obGBgY/xfjD1S/VuS13uJvAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2016/08/15/git+hexo搭建博客-A/">hexo 搭建博客</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

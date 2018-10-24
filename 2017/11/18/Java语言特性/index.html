@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>Java语言特性 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Java语言特性</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Java语言特性</h1><div class="post-meta">Nov 18, 2017<span> | </span><span class="category"><a href="/categories/Java-系列/">Java 系列</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2017/11/18/Java语言特性/#vcomment"><span class="valine-comment-count" data-xid="/2017/11/18/Java语言特性/"></span><span> 条评论</span></a><div class="post-content"><h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本文所列出的内容仅针对于具有相同基础的人学习，<br>即 C/C++ 中所没有的或者从没遇见过的 Java 语言特性。</p>
+<h2 id="Java-程序结构"><a href="#Java-程序结构" class="headerlink" title="Java 程序结构"></a>Java 程序结构</h2><p><strong>Java 应用程序由 源码文件、机器码文件组成</strong></p>
+<ul>
+<li>源码文件：包含程序的源码，必须以 <code>.java</code> 为扩展名</li>
+<li>机器码文件: 由编译源码文件所生成的二进制文件，其格式为 <code>.class</code> 扩展名</li>
+</ul>
+<p><strong>Java 应用程序由一个，或多个源文件组成</strong></p>
+<ul>
+<li>一个类被保存为一个单独的源文件中</li>
+<li>类名必须与文件名(除去扩展)具有相同名字</li>
+<li>因此 Java 应用程序由一个，或多个类组成</li>
+</ul>
+<h2 id="Java-主程序结构"><a href="#Java-主程序结构" class="headerlink" title="Java 主程序结构"></a>Java 主程序结构</h2><p><strong>Java 应用程序以类进行交互，即一个源码文件就是一个类</strong><br><em>其基本源码形式如下：</em> <code>Test.java 源文件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">	.....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>主程序中的main函数被作为类的方法存在，且具有特定格式</strong><br><em>其常用源码形式如下:</em> <code>Test.java 源文件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Test</span><br><span class="line">&#123;	</span><br><span class="line">	public static void main (String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		......</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>声明类的 public 表明此文件以外的文件可访问 Test 类</li>
+<li>声明 main 的 public 表明此类外部可直接访问 main 函数 <code>Test.main(&quot;...&quot;);</code></li>
+<li>声明 main 的 static 表明我们不需要建立 Test 对象也可以直接访问 main 函数</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>Java 源代码其实就是一个类定义</li>
+<li>Java 主程序中的类里必须包含有 main 方法</li>
+<li>main 方法声明格式必须符合 Java 规定格式</li>
+</ul>
+<h2 id="Java-运行机制"><a href="#Java-运行机制" class="headerlink" title="Java 运行机制"></a>Java 运行机制</h2><ul>
+<li>Java 程序的运行是从 main 函数开始执行</li>
+</ul>
+<p><strong>简明讲解 main 函数：</strong></p>
+<ul>
+<li><p>Java 规定，一个文件保存为一个类，且名字相同<br>因此，java 源代码首先得包含有一个类的声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通常，我们通过调用一个类的成员函数来执行一个动作<br>因此，我们要使用 main 函数，就必须作为 Test 类成员的形式存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">	void main (String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类只是一种类型，我们必须建立一个对象才能进行一系列操作。<br>默认情况下类的成员是限制外部访问的形式存在 —- private 权限<br>为使类外部可直接访问类内部成员则必须设定成员为公共访问 —- public 权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">	public void main (String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line"> *建立对象：Test Ts;</span><br><span class="line"> *访问成员：Ts.main (&quot;...&quot;);</span><br><span class="line"> *你可能觉得一起很正常，其实不然</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>main 被作为类的成员，<br>但程序从 main 开始执行，要执行 main 就必须建立对象<br>因此程序在运行的时候并没有办法建立一个 Test 类的对象。<br>为了使 main 能被调用，把 main 函数设定为 static 静态成员。<br>这样无论对象是否存在，都可以通过 <code>Test.main(&quot;...&quot;)</code> 执行第一个语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Test</span><br><span class="line">&#123;</span><br><span class="line">	public static void main (String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于 <code>public class Test</code> 中 的 <code>public</code> 将在包中讲解</p>
+</li>
+</ul>
+<h2 id="Java-类库结构"><a href="#Java-类库结构" class="headerlink" title="Java 类库结构"></a>Java 类库结构</h2><ul>
+<li>类库指一个库里包含各种各样的类以提供程序使用。</li>
+<li>类库实际上是以目录结构的形式来分布存储的</li>
+</ul>
+<p><strong>以标准库进行讲解：</strong></p>
+<ul>
+<li>JKD 默认安装有一个库名为 java 是一个目录</li>
+<li>java 库里包含有多个包其实际上也是一个目录</li>
+<li>包名是根据类的用途进行分类而命名，如 lang 包、io 包 …</li>
+<li>包里的文件则是我们平常要使用的各个类。</li>
+<li>一个类表现为一个文件然后集合在一个包目录中。</li>
+</ul>
+<p><strong>提示：</strong> <em>java 是 JDK 的基础库，javax 是扩展库</em></p>
+<p>例子：<code>import java.lang.Integer</code><br><em>该语句表明我们引入 <code>java</code> 库里的 <code>lang</code> 包里的 <code>Integer</code> 类为程序使用</em><br><em>该类位于 unix 类系统于：java/lang/Integer</em><br><em>该类位于 Win 类系统于：java\lang\Integer</em></p>
+<p><strong>标准类库表：</strong><br><code>java.lang:</code> <em>用于处理数组及字符串的类，该包在程序中自动被加载</em><br><code>java.io:</code> <em>用于流的输入输出</em><br><code>java.nio.file:</code> <em>用于文件的输入输出</em><br><code>java.util:</code> <em>用于管理数据项</em><br><code>javax.swing:</code> <em>提供灵活易用的组件用于构建图像，GUI 类</em><br><code>java.awt:</code> <em>提供原始的 GUI 组件以及对 swing 组件的一些基本支持</em><br><code>java.awt.geom:</code><em>二维图形</em><br><code>java.awt.event:</code><em>用于 GUI 界面中处理事件</em></p>
+<h2 id="使用类库中的类："><a href="#使用类库中的类：" class="headerlink" title="使用类库中的类："></a>使用类库中的类：</h2><p><strong>方法一：</strong><br><strong>方法二：</strong></p>
+<ul>
+<li>待更新<h2 id="Java-数据类型"><a href="#Java-数据类型" class="headerlink" title="Java 数据类型"></a>Java 数据类型</h2></li>
+<li>基本数据类型：<br><strong>byte 类型:</strong> 字节型，占用 1 字节，8  bit<br><strong>char 类型:</strong> 字符型，占用 2 字节，16 bit</li>
+<li>常量以 <strong>final</strong> 修饰：<code>final int a = 20;</code></li>
+<li>字面值常量：</li>
+<li>待更新</li>
+</ul>
+<h2 id="Java-循环控制"><a href="#Java-循环控制" class="headerlink" title="Java 循环控制"></a>Java 循环控制</h2><ul>
+<li>带标签的 break 语句</li>
+<li>带标签的 continue 语句</li>
+<li>待更新</li>
+</ul>
+<h2 id="Java-类"><a href="#Java-类" class="headerlink" title="Java 类"></a>Java 类</h2><ul>
+<li>待更新</li>
+</ul>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2017/11/18/Java语言特性/" data-id="cjnn5im2s0002vrljozeglp4t" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aQU7EMAwF0Ln/pcsWBO182x2kJi+raihNXhZWYvv1isfxbfR+//1OPsttAwMD47GM43JcvzNfYm/eP2bEwMDYgHE2cfLO2cQTWL42DAwMjOT5OgQn1OQZAwMDo8qoHijnJAwMDIzPXVOTLbvevpvv4hgYGA9k5Fn3/3/+SH0DAwPjUYyjOJIv9EJw9ej5478wMDCWZvSOfcnS82twr9kCAwNjH0b+6eSXpGBQLZRGMAwMjC0ZSfPWpHmi1/51uukYGBjbMJKC4l3NFtUvv4m0GBgYSzPyI1o1D18NwZMqAAYGBsa8xaHa+JUcGZu1VgwMjIczekvJj4PVRfQSfxgYGOsxqse7XnmyeR2N03MYGBg7MPJInJcYe21k+VxvukUwMDA2Y/QaKfK/Jqm3wv0bAwNjOUa1cHjEo3nICw6dp+vEwMBYlDEPi73yZN58Vgi1GBgY2zAmS5+E6XwjThssMDAwFmXkcaw6/Tzg3lUKxcDAWIORB9ZeMSC/Ko9CPwYGxgaMasJrfiislhnezIuBgbEBo5eUTwJ0NRnXLLhiYGAsyjiKIwl/87Ta6FCIgYGxHKOXXc/LjfkWVPNm5dwhBgbGwxnVIJvvQS+IVwM9BgbGPoz8wpk3b00Ccb41GBgYGPN0Wy+UV4sQGBgYGEmKrVqSzO/TUQoPAwNjA0avJaJXSMgPkYX3MTAwlmZUGx1ycB5qk2VNrr4YGBiPZXwBNL9Bz2Dlmq8AAAAASUVORK5CYII=">分享</a><div class="tags"><a href="/tags/Java-系列/">Java 系列</a></div><div class="post-nav"><a class="pre" href="/2017/12/17/搭建开发环境-Android/">Linux 下搭建 Android 开发环境</a><a class="next" href="/2017/10/18/Git/">Git使用详解</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

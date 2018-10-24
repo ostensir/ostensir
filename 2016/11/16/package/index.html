@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>yum 包管理器 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">yum 包管理器</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">yum 包管理器</h1><div class="post-meta">Nov 16, 2016<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2016/11/16/package/#vcomment"><span class="valine-comment-count" data-xid="/2016/11/16/package/"></span><span> 条评论</span></a><div class="post-content"><h2 id="yum-包管理"><a href="#yum-包管理" class="headerlink" title="yum 包管理"></a><strong>yum 包管理</strong></h2><blockquote>
+<p>提示:</p>
+<ul>
+<li><strong>使用包管理时，为避免安装或升级过程中出现权限问题，应使用 su 命令切换到 root 用户</strong></li>
+<li><strong>而 exit 命令则可以注销该账户</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>特性:</p>
+<ul>
+<li><strong>yum 会自动对软件包的依赖性进行检查</strong></li>
+<li><strong>其检查结果是: 除软件包之外，还需要哪些依赖包，或应该升级那些软件包来解决依赖性问题</strong></li>
+</ul>
+</blockquote>
+<ul>
+<li><p><strong>yum 在线安装</strong></p>
+<blockquote>
+<p><pre><br><strong> yum install [软件名称] </strong><br><code></code></pre></p>
+<ul>
+<li><strong>其软件包对应格式为 .rpm 文件</strong></li>
+<li><strong>它会从指定的服务器(软件源/仓库)上下载对应的 rpm 软件包(只要该软件存在)</strong></li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>yum 本地安装</strong></p>
+<blockquote>
+<p><pre><br><strong> yum localinstall [软件名称] </strong><br><code></code></pre></p>
+<ul>
+<li><strong>它会自动在当前目录或指定的目录下寻找对应名字的 rpm 软件包进行安装</strong></li>
+<li><strong>如果遇到提示没有签名的软件，–nogpgcheck 可以忽略这个问题进行安装</strong><br><pre><br><strong> yum localinstall [软件名称] –nogpgcheck </strong><br><code></code></pre></li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>yum 源码安装</strong></p>
+<blockquote>
+<p>基本步骤:</p>
+<ol>
+<li><strong>下载源码</strong></li>
+<li><strong>解压源码到 /usr/local/src 目录下，也可以是别的目录，前者是系统常用软件安装的目录</strong></li>
+<li><strong>进入解压后得到的软件包目录</strong></li>
+</ol>
+<ul>
+<li><strong>查看 INSTALL 文档 和 README 然后遵循文档中的介绍进行安装</strong></li>
+<li><strong>如果没有以上两个文档，则遵循一下命令进行安装</strong><br><strong>运行配置文件，对软件进行配置</strong><br><pre><br>./configure –prefix=软件名称<br><code><br><strong>编译软件源代码</strong><br><pre><br>make<br><code><br><strong>安装软件</strong><br><pre><br>make install<br><code> </code></pre></code></pre></code></pre></li>
+</ul>
+<ol start="4">
+<li><strong>如果安装过程中出现问题，根据提示信息用 yum search 查找依赖包 并 yum install 安装依赖包</strong></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>本文永久连接: <a href="http://www.guib.in" target="_blank" rel="noopener">http://www.guib.in</a></p>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2016/11/16/package/" data-id="cjnn5im34000dvrljfz6yhm39" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aMXLjMAwFUN//0t4mRWaylj4AuhD5WHliOeJjgQEIvF7xen9Yf79Nnk/e8vrGwsDAeCzjfbk+PfP779eb+PR89YBuDgUDA+MAxqcIlnzu8a4jZ743DAwMjCojCY5JWomBgYExZ+Rl6uQZDAwMjGoRWw2yhU0E4XhZLY6BgfFAxqSw/Pbnr/Q3MDAwHsVYGzp725qE8p/fYmBgbM3IA1y1vJw0O5tjGRgYGEcyesMT+YaSoymUrBgYGJsyrreYvLKaOM7Hzv6zHwwMjK0Zq168Kr3Lj/XmWwwMjO0YyRarSV4zSy2GfgwMjBMYvUuxybVa9cgKRSwGBsamjCQpTNLEyeXdKjAGBsaujOttVQvX6vDE5AhuZkYwMDAOY8yL2KiSjvuSN1U4BgbG1oy8pBzd7QUButDHwMDAOIZRbSjmW5xfwJVnRjAwMLZj9ArRPH1MNpSDm40BDAyMhzOas2PxKydjHIW/Y2BgbM2YFJbVtSrs3gRiDAyMTRl5IthLCr9dymJgYJzGSIYkqtdw+UBYMx3EwMA4hlFtZPZam71hjmiwAwMDY1PGu7iqiWBOXZAUYmBgbMpYe1nWG7PoXfyN+rQYGBgPZFSDbF6sVsvj6ogGBgbGaYzJ1X9+Gdcb7Iiu5zAwMDDiRLDXqqy+sTDjhoGBgTFuBuS/iopYDAyMrRmTwnIy/lW9jMPAwDiTkZeOo39xXYIuak5gYGBsx/gHGXqTYTvWQtsAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2017/05/28/安装过程-Arch/">Arch-基础安装</a><a class="next" href="/2016/11/09/变量-C++/">C++ 变量是什么</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>C++ 变量是什么 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">C++ 变量是什么</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">C++ 变量是什么</h1><div class="post-meta">Nov 9, 2016<span> | </span><span class="category"><a href="/categories/C/">C++</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2016/11/09/变量-C++/#vcomment"><span class="valine-comment-count" data-xid="/2016/11/09/变量-C++/"></span><span> 条评论</span></a><div class="post-content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h2><blockquote>
+</blockquote>
+<ul>
+<li><strong>变量，是拥有一个名字且可以供程序操作的存储空间</strong></li>
+<li><strong>变量的类型决定了它所占空间大小和布局方式，以及可以参与的运算</strong></li>
+<li><strong>对 c++ 来说，变量和对象一般可以互换使用(即声明一个变量说成声明一个对象)</strong></li>
+<li><strong>对象是指一块能存储数据并且具有某种类型的内存空间</strong></li>
+</ul>
+<h2 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a><strong>初始值</strong></h2><blockquote>
+</blockquote>
+<ul>
+<li><strong>初始化不是赋值，其含义是在创建变量时(申请内存时)赋予它一个初始值</strong></li>
+<li><strong>而赋值的含义是，把变量(或对象)当前值擦除，而以一个新值来代替</strong></li>
+</ul>
+<h2 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a><strong>列表初始化</strong></h2><blockquote>
+<p><strong>特点，在使用列表初始化的同时，如果这个初值存在被丢弃信息的危险，则编译器会报错</strong><br> <pre><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int sold = &#123;0&#125;;</span><br><span class="line">int sold &#123;0&#125;;</span><br><span class="line">int sold (0);</span><br></pre></td></tr></table></figure></pre></p>
+</blockquote>
+<blockquote>
+</blockquote>
+<p> 其中花括号被得到了全面应用<br> 这三条语句可以说等价于 int sold =0;<br> <code></code></p>
+<h2 id="声明和定义之间的关系"><a href="#声明和定义之间的关系" class="headerlink" title="声明和定义之间的关系"></a><strong>声明和定义之间的关系</strong></h2><blockquote>
+<p>C++ 支持分离式编译机制，即允许将程序分割为若干文件，每个文件可被独立编译<br> 因此，也提供在文件之间共享代码和变量的方法<br><code>以浅显的角度讲:</code></p>
+<ul>
+<li><strong>声明，是让程序知道有该名字的一个变量</strong></li>
+<li><strong>一个文件如果想使用另一个文件中的变量，则必须包含(include)那个名字的声明</strong></li>
+<li><strong>定义，是负责创建与名字关联的实体</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code> 以变量的角度讲:</code></p>
+<ul>
+<li><strong>声明规定了变量的类型和名字</strong></li>
+<li><strong>定义则会申请存储空间，同时还可能被副一个初始值</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code> 一般情况下，当在声明变量的同时也被定义<br><code> 如果只想声明而非定义它(即不创建内存空间)时，应使用 extern 且不能显式初始化变量</code></code></p>
+</blockquote>
+<p> <pre><br> 例:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extern int i; 只声明 i 这个名字，然而并不为它创建内存空间</span><br><span class="line">int i; 声明 i 这个名字并创建内存空间，其值如果未被初始化，则是垃圾值</span><br></pre></td></tr></table></figure></pre></p>
+<blockquote>
+</blockquote>
+<p> <code></code></p>
+<blockquote>
+<ul>
+<li><code> 如果包含了初始化的 extern 声明则会产生抵消作用变成定义</code></li>
+<li><code> 函数体内部如果声明一个 extern 变量将会引发错误</code></li>
+<li><code> 变量只能被定义一次(即只能在一个地方创建内存空间)</code></li>
+<li><code> 但变量可以被多次且不同地方声明，要避免重复定义</code></li>
+<li><code> 在多文件中，变量只能在一个文件中出现定义，<br>而其他用到该变量的文件必须包含它的声明才可使用</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>本文永久连接: <a href="http://www.guib.in" target="_blank" rel="noopener">http://www.guib.in</a></p>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2016/11/09/变量-C++/" data-id="cjnn5im36000gvrljf7pk7yi8" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aQW7DMAwEwPz/0+m1QGtjSSpFLY1PQWDLGh8IUuTrFV/vH9f3/+/vv7rz6p+rNRdcGBgYj2W8b69V3+l+zeS9V/dgYGCcw7h6cS+wzsH53jAwMDBW/b5PBJN1MDAwMCaMPKGsFrcYGBgY1WKyF1jzT/ZHtTgGBsYDGZPC8tO/P9LfwMDAeBTjXbyq7cxJaljYFQYGxtaMPMD1MHm5W20qYGBgnMPIj8aS7SbI5NOUYRgYGIcx7o/GkqO0Hm8SvjEwMPZmJJueh85qwpc8hYGBcRqj2iasYqrjFHlYx8DAOI2RD2kte3Ec6KPAjYGBcQyj0E+It5J/rOr4xYL+BgYGxr9n5KMVha8yKGKbJS4GBsbWjPyxZHgif0HevMxTTAwMjL0Z1TGLeZBNgnu1PsXAwNiVMR8/7bU5ewNhUYaLgYGxKSMPx2uPyXoJ4oKWAAYGxsMZ+YDpvCXZO1ZrTrRhYGA8lvGRU7rimpMUEwMD4xxGvkQSHCdnYtURtF9mRjAwMA5gzBPE3v29RLPc38DAwHg4Yz4MkYfdwlHaqtwWAwPjsYxeSbm2tZms2cxtMTAwtmBMgl1ecFYDd3X4AwMD4wRGL8gmR3W9xmdzFAMDA+MARrXgrB7P5eMUzTE1DAwMjFZTszq0UW2IRud8GBgYRzLmM2jVwY6okYmBgXEAIy9He6XsqMsavAUDA2NvxiThq45i5A2D6h4wMDA2ZXwB6veTYQV84cIAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2016/11/16/package/">yum 包管理器</a><a class="next" href="/2016/11/08/数据类型-C++/">C++ 基本数据类型</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

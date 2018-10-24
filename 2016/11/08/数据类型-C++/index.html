@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>C++ 基本数据类型 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">C++ 基本数据类型</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">C++ 基本数据类型</h1><div class="post-meta">Nov 8, 2016<span> | </span><span class="category"><a href="/categories/C/">C++</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2016/11/08/数据类型-C++/#vcomment"><span class="valine-comment-count" data-xid="/2016/11/08/数据类型-C++/"></span><span> 条评论</span></a><div class="post-content"><h2 id="长度或尺寸"><a href="#长度或尺寸" class="headerlink" title="长度或尺寸"></a><strong>长度或尺寸</strong></h2><p>在内存中，数据非 0 即 1 ，可被寻址的最小内存块称为字节，即以字节来寻址。<br>而存储的基本单元则称为字，通常由几个字节组成。</p>
+<ul>
+<li><p><strong>字符型</strong></p>
+<blockquote>
+<p>算术类型: <strong> 即该类型数据所占用的位数，然而在不同机器上却有所差别 </strong><br>算术类型:  <strong> 分为 整形（字符型、布尔型）、浮点型 </strong></p>
+</blockquote>
+<p><pre><br><strong> char      </strong> 占用一个字节（8 位）<br><strong> wchar_t   </strong> 占用 2 个字节 （16 位）<br><strong> char16_t  </strong> 占用 2 个字节（16 位）<br><strong> char_32_t </strong> 占用 4 个字节（32 位）<br><code></code></pre></p>
+<blockquote>
+<p>其中 <strong> chat16_t </strong> 和 <strong>chat32_t </strong> 为 <strong> Unicode </strong> 字符集类型<br><strong>wchat_t </strong> 用于确保可以存储机器最大扩展字符集中的任意字符</p>
+</blockquote>
+</li>
+<li><p><strong>整数型</strong></p>
+<blockquote>
+<p><strong>c++ 标准规定</strong></p>
+</blockquote>
+<p><pre><br><strong> int </strong> 至少和 <strong> short </strong> 一样大 (即 <strong> int </strong> 最小只能是 占用两个字节)<br><strong> long </strong> 至少和 <strong> int </strong> 一样大  (即 <strong>long </strong> 最小只能是 <strong> int </strong> 的尺寸 4 字节)<br><strong> long long </strong> 至少和 <strong> long </strong> 一样大</pre></p>
+<blockquote>
+<p><code></code></p>
+</blockquote>
+</li>
+<li><p><strong>浮点型</strong> </p>
+<blockquote>
+<p><strong>分为 单精度 和 双精度</strong><br>通常：</p>
+</blockquote>
+<p><pre><br><strong> float </strong> 以一个字（32字节）来表示一个数，7 个有效位<br><strong> double </strong> 以两个字 (64字节) 来表示一个数，16 个有效位<br><strong> long double </strong> 以 四个字 (96/128字节) 来表示一个数 ， 一般用于特殊需求，视硬件实现精度不同位数不同<br><code></code></pre></p>
+</li>
+</ul>
+<h2 id="修饰类型"><a href="#修饰类型" class="headerlink" title="修饰类型"></a><strong>修饰类型</strong></h2><ul>
+<li><p><strong>带符号 (signed) 和无符号 (unsigned)</strong></p>
+<blockquote>
+</blockquote>
+<p><pre><br>带符号的类型可表示正数、负数 和 0， 无符号类型则仅能表示大于等于 0 的直<br>所有整形一般被默认为带符号的类型<br>而由 unsigned 修饰的类型则为无符号类型<br><code></code></pre></p>
+<blockquote>
+</blockquote>
+<p><pre><br>字符型被分为三种：char、signed char、unsigned char<br>但字符的表现形式只有两种方式，即 带符号字符、和 无符号字符<br>而 char 不是带符号类型 就是无符号类型， 具体由编译器决定<br><code></code></pre></p>
+<blockquote>
+</blockquote>
+</li>
+<li><p><strong>字面值常量</strong></p>
+<blockquote>
+</blockquote>
+<p><pre><br>以 0 开头的整数表示为 8 进制<br>以 0x 或 0X 开头的整数表示为 16 进制<br>整数则直接表示</pre></p>
+<blockquote>
+<p><code><br><strong>默认情况下</strong></code></p>
+</blockquote>
+<p><pre><br>十进制字面值是代符号数，其类型是 int、long、和 long long 中最小的那个<br>八进制和十六进制字面值的类型是能容纳其数值的 int 、unsigned int、long、unsigned long<br>long long、unsigned long long 中最小的那个<br>short 没有对应的字面值</pre></p>
+<blockquote>
+<p><code></code></p>
+</blockquote>
+<blockquote>
+<p><strong>字面值带前缀</strong></p>
+</blockquote>
+<p><pre><br>L    代表类型为宽字符型(wchat_t) 字面值<br>u8   代表类型为 utf-8 (utf-8 用 8 位编码一个 unicode 字符)字面值<br>u    代表类型为 char16_t (用 16 位编码一个 unicode 字符)字面值<br>U    代表类型为 char32_t (用 32 位编码一个 unicode 字符)字面值<br><code></code></pre></p>
+<blockquote>
+<p><strong>字面值带后缀</strong></p>
+</blockquote>
+<p><pre><br>u / U    代表类型为无符号类型(unsigned)<br>l / L    代表类型为长整型类型(long/long double)<br>ll / LL  代表类型为长长型类型(long long)<br>f  / F   代表类型为浮点型类型(float)<br><code> </code></pre></p>
+<blockquote>
+<p><strong>其他</strong></p>
+</blockquote>
+<p><pre><br>true / false 是 bool 类型的字面值<br>nullptr 是 c++ 指针字面值<br>NULL 是 c 指针字面值<br><code></code></pre></p>
+</li>
+<li><p><strong>类型选择</strong></p>
+<blockquote>
+</blockquote>
+<p><pre><br>1 当明确知道数值不可能为 负时，选用无符号类型<br>2 一般使用 int 来执行整数运算，如果数值超过该类型表示范围可选用 long long<br>  通常，short 显得太小，而 long == int<br>3 算术表达式中不要使用 char 和 bool，只有在存放字符或布尔值时才使用它们<br>   因 chat 在不同机器上不是符号就是无符号，如果因为需要的数值不大而使用char，<br>   则因明确指定为 signed 或 unsigned<br>4 执行浮点数运算时选用 double， 因为 float 通常精度不够，而双精度和单精度计算代价差别不大，<br>  有些机器上甚至要快于单精度，而 long double 一般别用，其运行的消耗也不容忽视。<br><code></code></pre></p>
+<blockquote>
+</blockquote>
+</li>
+<li><p><strong>类型转换</strong></p>
+<blockquote>
+</blockquote>
+<p>类型所能代表的值的范围决定了转换的过程<br><pre><br>1 当把一个非 bool 类型的值赋予 bool 类型变量时，当该值为 0 时 false ，否则为 true<br>2 当把一个 bool 值赋予 非 bool 类型的变量时，该值为 false 时为 0， 否则为 1<br>3 当把一个浮点数赋予整数类型时，进行了近视处理，其结果只保留小数点之前的部分<br>4 当把一个整数值赋予浮点类型时，小数部分被记为0， 如果该整数所占空间超过了浮点型的容量，精度可能有损失<br>5 当赋予无符号类型一个超出表示范围的数值时， 结果是原值对无符号类型可表示的最大值进行取模后的余数<br>6 当赋予带符号类型一个超出表示范围的数值时，结果时未定以的<br>  程序可能继续工作，可能崩溃，也可能生成垃圾数据<br><code></code></pre></p>
+<blockquote>
+</blockquote>
+</li>
+<li><strong>转义序列</strong><blockquote>
+</blockquote>
+有两类字符程序员不能直接使用<br><pre><br>1 不可打印的字符！如退格或其他没有可视的图符<br>2 特殊含义的字符！如单引号、双引号、问号、反斜杠等<br><code><blockquote>
+</blockquote>
+可以有两种方式来完成以上这些字符<br><pre><br>1 转义序列，如 \n ，而 \tHi!! 则输出制表符和 Hi!!<br>2 泛化转义序列，\ 后跟一个或多个十六进制或八进制值，如 \12 则是换行符，<br>  而 \x1234 则是16进制数对应的符号<br><code></code></pre></code></pre></li>
+</ul>
+<blockquote>
+<p>本文永久连接: <a href="http://www.guib.in" target="_blank" rel="noopener">http://www.guib.in</a></p>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2016/11/08/数据类型-C++/" data-id="cjnn5im39000lvrljcor6tzsg" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQZKDMAwF0dz/0swBEpz+EpkqW82KCgT8WKhkSa8XPq7lcXfP+r/k6sOHDBkytmXwJb7/a/3Mu7e835MiP7xdhgwZAxjrpXAGD5q1997+LkOGDBk3QZCE1PX9/FyGDBkyCGO99DWDhGOSksqQIWMyo1YUCzaZON38+V5chgwZGzJ41f3/z3/S35AhQ8ZWjFoAJc0DHnx5unm7KhkyZBzNqLUwecOgVrDjbQYZMmRMY/BCWzrUlbY/eYIoQ4aMCYw0XNbA6fhX+vlkyJAxh5GG1E5jMm2UfnmmDBkyjmbUQmenoVgbswjeJUOGjJGM2hJrCSJvGMiQIWMO49ktZfrMzof4UG6TIUPG0QxerE8DNA+sJLzerlaGDBlHM8hyHyuE4SWSwQsZMmTMYaQF/QsftaGK1v5bhgwZhzL4aFe/cJYOh8UlPxkyZBzNSDex/bEJPmT2Sg8ZMmQczUiHIWpX0/Ey/hFlyJBxNuPZgbA4mQtTwy9FNxkyZAxgdFK3Z5sBpIQnQ4aMaQw+8sXBadDsDHbIkCHjbEZt3IE0AHiiWUsc0S5chgwZmzOu8Ei/UPqEB5JCGTJkHMfohLnOcAZvTqzPY4wMGTK2ZaTNRd4e4IljZ4srQ4aMOYzamFetnVmcBElbmDJkyBjP6F9N/9WaaJMhQ8YwBgmsaeOTA4LOhgwZMo5j8E1sbSCDF+/4p2yV22TIkLEVI827eBku2IKW0kEZMmQMYPwBtyqEmqDH4zgAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2016/11/09/变量-C++/">C++ 变量是什么</a><a class="next" href="/2016/08/16/git+hexo搭建博客-C/">hexo 管理博客</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

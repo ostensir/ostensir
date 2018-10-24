@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>Linux 下搭建 Android 开发环境 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux 下搭建 Android 开发环境</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Linux 下搭建 Android 开发环境</h1><div class="post-meta">Dec 17, 2017<span> | </span><span class="category"><a href="/categories/Linux/">Linux</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2017/12/17/搭建开发环境-Android/#vcomment"><span class="valine-comment-count" data-xid="/2017/12/17/搭建开发环境-Android/"></span><span> 条评论</span></a><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  作者使用命令行进行开发已经习惯了，<br>刚开始Android 开发就遇到了一些问题，<br>网上搜寻很多资料和书籍都是基于 Android Studio的，<br>今天偶然在简书看到了一篇基于命令行构建应用的教程，<br>因此特地写下此教程，并表示感谢下面两篇文章的作者。</p>
+<p><strong>我为什么使用命令行开发</strong><br>其实买本 Android 书（基于 Android Studio）进行学习也是一个不错的选择！<br>比起在命令行中进行软件开发，我更不愿意去学习和研究如何使用一个软件，<br>一来是浪费时间精力去学习使用软件，二来是不熟悉和无法掌握软件的构建过程，<br>另外是能提高开发效率（直接编辑文件+命令编译远比在软件中点来点去要方便多）。<br>但无论如何，从命令中构建程序可使自己更了解项目的目录结构及每个文件所存在的意义。</p>
+<p><strong>插曲</strong><br>此教程仅告诉你如何从下载、安装、配置并直到编译成 apk 文件并测试安装的过程。<br>如果你不太懂下面的一些操作，可以参考我另一篇文章 – [剖析一个项目][0]<br>这篇文章会告诉你那些文件或目录是必须有的，那些是可以改变的，那些是不需要的。</p>
+<p><strong>本文全程参考于以下三个地址：</strong></p>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Android" title="Arch Wiki in Android" target="_blank" rel="noopener">ArchLinux Wiki – Anroid</a>(<a href="https://wiki.archlinux.org/index.php/Android" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/Android</a>)</li>
+<li><a href="http://www.jianshu.com/p/ba191eb9a23f" target="_blank" rel="noopener">从命令行构建应用-简书</a>(<a href="http://www.jianshu.com/p/ba191eb9a23f" target="_blank" rel="noopener">http://www.jianshu.com/p/ba191eb9a23f</a>)</li>
+<li><a href="http://www.runoob.com/android/android-overview.html" target="_blank" rel="noopener">RUNOOB – Android 教程</a>(<a href="http://www.runoob.com/android/android-overview.html" target="_blank" rel="noopener">http://www.runoob.com/android/android-overview.html</a>)</li>
+</ul>
+<h1 id="本次测试环境各软件版本"><a href="#本次测试环境各软件版本" class="headerlink" title="本次测试环境各软件版本"></a>本次测试环境各软件版本</h1><ul>
+<li>测试系统：Arch Linux 64 bit 4.14.3-1</li>
+<li>JDK 版本：openjdk 7 即：1.7.0_151</li>
+<li>Android platform API 版本：26.8.0.0_r02-1</li>
+<li>Android SDK tool 版本：26.1.1-1</li>
+<li>Android platform tool 版本：r27.0.0-1</li>
+<li>Android Build tool 版本：r27.0.2-1</li>
+<li>本次测试的应用程序 – 简单的 Hello World 程序</li>
+</ul>
+<h1 id="下载和安装-参考于Arch-Wiki"><a href="#下载和安装-参考于Arch-Wiki" class="headerlink" title="下载和安装(参考于Arch Wiki)"></a>下载和安装(参考于<a href="https://wiki.archlinux.org/index.php/Android" title="Arch Wiki in Android" target="_blank" rel="noopener">Arch Wiki</a>)</h1><p><strong>下载 JDK ，之所以下载它是因为它包含一个编译器 javac</strong><br>Arch Packages/Extra: <a href="https://www.archlinux.org/packages/?sort=&amp;q=openjdk7&amp;maintainer=&amp;flagged=" title="Packages" target="_blank" rel="noopener">AUR</a><br>官网: <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" title="Oracle java 官网" target="_blank" rel="noopener">Oracle java</a><br><code># pacman -S jdk7-openjdk</code><br><strong>下载 Android SDK 相关工具</strong></p>
+<ol>
+<li>下载 Android SDK 基础工具(包含一些管理 sdk 的命令和设置)<br>Arch: <a href="https://aur.archlinux.org/packages/android-sdk/" title="AUR sdk tool" target="_blank" rel="noopener">Android sdk tool</a><br>官网: <a href="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" title="官方 sdk tool" target="_blank" rel="noopener">Android sdk tool</a><br><code># yaourt -S android-sdk</code></li>
+<li>下载 Android 平台相关工具(包含一些和平台相关的工具)<br>Arch: <a href="https://aur.archlinux.org/packages/android-sdk-platform-tools/" title="AUR platform tool" target="_blank" rel="noopener">Android platform tool</a><br>官网: <a href="https://dl.google.com/android/repository/platform-tools_r27.0.0-linux.zip" title="官方 platform tool" target="_blank" rel="noopener">Android platform tool</a><br><code># yaourt -S android-sdk-platform-tools</code></li>
+<li>下载 Android 编译工具（包含和编译软件相关的工具）<br>Arch: <a href="https://aur.archlinux.org/packages/android-sdk-build-tools/" title="AUR Build tool" target="_blank" rel="noopener">Android Build tool 27</a><br>官网: <a href="https://dl-ssl.google.com/android/repository/build-tools_r27.0.2-linux.zip" title="官方 Build tool" target="_blank" rel="noopener">Android Build tool 27</a><br><code># yaourt -S android-sdk-build-tools</code></li>
+<li>下载 Android SDK 平台 API（包含软件要使用的对应平台的 api）<br>参考 Wiki: <a href="https://wiki.archlinux.org/index.php/Android" title="Arch Wiki in Android" target="_blank" rel="noopener">下拉直到标题为 Android SDK Platform APK</a><br>Arch: <a href="https://aur.archlinux.org/packages/android-platform-26/" title="AUR platform 26" target="_blank" rel="noopener">本地测试版本: Android platform 26 </a><br>官网: <a href="https://dl.google.com/android/repository/platform-26_r02.zip" title="官方 platform 26" target="_blank" rel="noopener">Android platform 26</a><br><code># yaourt -S android-platform-26</code></li>
+<li>下载 System 镜像（可选）<br>这是可选的。<br>如果你打算在电脑上运行程序，就需要下载这个镜像。<br>如果你更我一样使用真机进行测试，则忽略这个部分。<br>因为我没有安装过，所以请参考 <a href="https://wiki.archlinux.org/index.php/Android" title="Arch Wiki in Android" target="_blank" rel="noopener">Arch Wiki 官方</a></li>
+</ol>
+<p><strong>提示：</strong></p>
+<ul>
+<li>JDK 有两个版本（openjdk 和 oraclejdk），但我下载的是 openjdk</li>
+<li>貌似 Android API 的版本 和 Build tool 的版本是对应的</li>
+<li>JDK 的版本不能低于Android api 的版本，否则可能无法编译。</li>
+<li>一般情况下，下载最新的 JDK 和最新的 Android SDK 及 Andriod Build tool</li>
+</ul>
+<p><strong>重要声明：</strong></p>
+<ul>
+<li>我初次接触 Android 开发，所以对于各版本匹配不是很明白。</li>
+<li>使用 openjdk 配合以上版本的 Android 26 编译 Hello world 正常。</li>
+<li>我不知道 openjdk 编译其他组件是否正常，因为我才刚开始。</li>
+<li>我不知道以上各版本匹配是否合适于开发各种应用，毕竟 openjdk 是开源的。</li>
+<li>如果有懂这方面的并且不嫌麻烦且乐意的话，<br>还清发一份教程到我邮箱谢谢 xiaocstudio@gmailcom。非常感谢！</li>
+</ul>
+<p><strong>在我的系统上：如果你跟我一样从 AUR 安装，那么</strong><br><em>所有关于Android 的 sdk 及 tool 都安装在 /opt 目录下</em><br><em>java 被安装于 /usr/lib/jvm/ 目录下</em></p>
+<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><p>对于 Arch Linux 系统：<br>打开 home 目录下的 .bashrc 文件并添加环境变量。<br>更改之前请先做一个测试，<br>因为对于可以搜寻到软件位置的，则不必再配置。</p>
+<ul>
+<li>测试 java,或显示版本<br><code>$ java -version</code></li>
+<li>测试 Android sdk tools<br><code>$ android</code></li>
+<li>测试 Android platform tools<br><code>$ adb</code></li>
+<li>测试 Android Build tools<br><code>$ aapt</code></li>
+</ul>
+<p>对于提示没有该命令的，则需要添加环境变量到 ~/.bashrc<br>在我的系统中的 ~/.bashrc 如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 尽管我 jdk 版本这样设置但还是 jdk7 我也纳闷！！</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-9-openjdk</span><br><span class="line">export PATH=$JAVA_HOME/jre/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 依次添加 tools 目录，platform-tools 目录，build-tools目录</span><br><span class="line">export ANDROID_HOME=/opt/android-sdk</span><br><span class="line">export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/:$PATH</span><br></pre></td></tr></table></figure></p>
+<p>提示：确保以上测试命令都可运行。</p>
+<h1 id="构建项目之创建目录结构"><a href="#构建项目之创建目录结构" class="headerlink" title="构建项目之创建目录结构"></a>构建项目之创建目录结构</h1><p><strong>基于 Hello World 程序</strong><br><em><strong>第一阶段</strong></em></p>
+<ol>
+<li>创建项目名字 HelloWorld<br><code>$ mkdir HelloWorld</code></li>
+<li>进入项目根目录创建 AndroidManifest.xml 文件<br><code>$ touch AndroidManifest.xml</code></li>
+<li>我们需要一个源码目录，来保存我们的源代码<br><code>$ mkdir src</code></li>
+<li>我们需要一个资源目录，来保存我们的资源文件<br><code>$ mkdir res</code></li>
+<li>我们需要一个bin目录，来存放编译好的可指向文件<br><code>$ mkdir bin</code></li>
+<li>我们需要一个obj目录，来存放编译期间的中间码文件<br><code>$ mkdiri obj</code></li>
+</ol>
+<p><strong><em>第二阶段</em></strong></p>
+<ol>
+<li>为了编译 java 文件，我们需要在 src/ 创建一个库为 a<br><code>$ mkdir src/a</code></li>
+<li>在库里创建一个包，名为 b<br><code>$ mkdir src/a/b</code></li>
+<li>在包里创建一个类别，名为 c<br><code>$ mkdir src/a/b/c</code></li>
+<li>在类别里创建我们的第一个程序源文件名为 MainActivity.java<br><code>$ touch src/c/b/c/MainActivity.java</code></li>
+</ol>
+<p><strong><em>第三阶段</em></strong></p>
+<ol>
+<li>我们需要在 res/ 下创建一个 drawable 目录来存放程序图标资源名为 logo.png<br><code>$ mkdir res/drawable</code><br>将图片改名为 logo.png 移入 HelloWorld/res/drawable/ 中</li>
+<li>我们还得创建一个 values 目录来存放我们程序所用到的字符串资源<br><code>$ mkdir res/values</code><br><code>$ mkdir res/values/strings.xml</code></li>
+</ol>
+<h1 id="编辑文件，则写代码"><a href="#编辑文件，则写代码" class="headerlink" title="编辑文件，则写代码"></a>编辑文件，则写代码</h1><p><strong>这里不教你如何写代码，直接复制代码测试是否成功编译。</strong></p>
+<ol>
+<li><p>编辑 HelloWorld/AndroidManifest.xml 文件，写入以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    package=&quot;a.b.c&quot;</span><br><span class="line">    android:versionCode=&quot;0&quot;</span><br><span class="line">    android:versionName=&quot;1.0&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;uses-sdk</span><br><span class="line">        android:minSdkVersion=&quot;8&quot;</span><br><span class="line">        android:targetSdkVersion=&quot;21&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;application</span><br><span class="line">            android:icon=&quot;@drawable/logo&quot;</span><br><span class="line">            android:label=&quot;@string/app_name&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=&quot;a.b.c.MainActivity&quot;</span><br><span class="line">            android:label=&quot;@string/app_name&quot;&gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line">                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/application&gt;</span><br><span class="line"></span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑 HelloWorld/res/values/strings.xml 文件,写入以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">&lt;string name=&quot;app_name&quot;&gt;My Apps&lt;/string&gt;</span><br><span class="line">&lt;string name=&quot;hello_world&quot;&gt;Hello,world!&lt;/string&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑我们的程序文件，HelloWorld/src/a/b/c/MainActivity.java 写入以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package a.b.c;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity</span><br><span class="line">&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onCreate(Bundle savedInstanceState)</span><br><span class="line">	&#123;</span><br><span class="line">		super.onCreate(savedInstanceState);</span><br><span class="line">		TextView textView = new TextView(this);</span><br><span class="line">		String helloWorld = getResources().getString(R.string.hello_world);</span><br><span class="line">		textView.setText(helloWorld);</span><br><span class="line">		setContentView(textView);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="构建项目之编译和生成"><a href="#构建项目之编译和生成" class="headerlink" title="构建项目之编译和生成"></a>构建项目之编译和生成</h1><p><strong>以下命令运行之前要确保你在项目根目录下</strong></p>
+<ul>
+<li>打包资源文件并生成 R 文件<br><code>aapt package -v -f -S res -J ./ -M AndroidManifest.xml -I $ANDROID_HOME/platforms/android-26/android.jar</code><br>此时在根目录下生成一个 R.java 文件，所有资源都打包在里面</li>
+<li><p>编译源文件（.java）生成二进制文件（.class）<br><code>javac -verbose -d obj -classpath $ANDROID_HOME/platforms/android-26/android.jar -sourcepath src src/a/b/c/MainActivity.java ./R.java</code><br>会依次生成以下这些文件位于 obj/ 目录下<br>boj/<br>├── MainActivity.class<br>├── R$attr.class<br>├── R.class<br>├── R$drawable.class<br>└── R$string.class</p>
+</li>
+<li><p>转换所有 .class 文件并生成 dex 可执行文件<br><code>dx --dex --verbose --output=bin/classes.dex obj</code><br>会在 bin 目录下生成 class.dex 文件<br>bin<br>└── classes.dex</p>
+</li>
+<li><p>打包并生成 apk 文件<br><code>aapt package -v -f -M AndroidManifest.xml -S res -I $ANDROID_HOME/platforms/android-26/android.jar -F bin/helloworld.apk bin</code><br>会在 bin 目录下生成未签名的 helloword.apk 文件<br>bin<br>├── classes.dex<br>└── helloworld.apk</p>
+</li>
+<li><p>签名 apk 文件</p>
+</li>
+</ul>
+<ol>
+<li><p>要有签名文件，你肯能没有，我们这里是为了测试所以临时创建一个加密文件<br><code>keytool -v -genkeypair -validity 10000 -dname &quot;CN=company_name,OU=organisational_unit,O=organisation,L=location,S=state,c=country_code&quot; -keystore myapp.keystore -storepass my_keys -keypass key_password -alias key_alias -keyalg RSA</code><br>其中 my_keys 加密密码，后面会验证<br>会在当前目录下创建一个 myapp.keystore 文件</p>
+</li>
+<li><p>签名 apk<br><code>jarsigner -verbose -keystore ./myapp.keystore -keypass key_password -signedjar bin/HelloWorld.apk bin/helloworld.apk key_alias</code><br>会在 bin 目录下生成 HelloWorld.apk<br>bin<br>├── classes.dex<br>├── helloworld.apk 未签名<br>└── HelloWorld.apk 已签名</p>
+</li>
+</ol>
+<h1 id="测试软件"><a href="#测试软件" class="headerlink" title="测试软件"></a>测试软件</h1><p>由于我是在真机测试，所以把 HelloWorld.apk 传到手机安装后即可运行了。</p>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2017/12/17/搭建开发环境-Android/" data-id="cjnn5im590011vrljby52oqni" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS27CQBAFwNz/0mQbCWHe6zGRmCmvkAL2lBed/v38xNfjz3X9nefvJ7/Nn7J0YWBgfC3jcXldP+D5O8mzkjPkZ8PAwDiHkQTQPLC2r6B9NRgYGBizo1+HziSJxMDAwLiLkYTa5BW0f8XAwMBoj7LeVltp22FgYJzGyLvu///5I/MNDAyMr2I8yiv5bTKSTNLB4lQYGBhbM9rRY97uzw+XN+nevCAMDIytGfnqQ9u4T4rVvKl3w6IYBgbGFzLyNYg2+Zu184YjBAwMjK0ZyVFWStNZPGxfEAYGxjmMfMSYp5LtQDQfcEa1OAYGxhaMNilcaaXlobZ+oRgYGFszZiPJ2cPuDeIv74mBgbEdY7bikC9J5OPJpcIYAwPjGEZ7u9nwMl+qyNc4MDAw9mbkDfo24Zuta3ywIsfAwPhyxsrQsS1xZ0sVRdDHwMDYlJGXsi0mL4BvGKZiYGBsymgfMGuitYOHOqxjYGBszVgpYut2WNmYq3+FgYFxAGN9zfSuO8w+Y2BgnMPIj3Ud65JEcD3FLPY1MDAwNmXMRp5tkpff4c05MTAwNmU8yqsdSX5inBDlthgYGBsxVppcsyK2beTVOyMYGBibMmZBNm+ZzYJpHXAxMDAOYKwUmXkJuv4f4GV7DgMDAyNOCvMksn1K3QXEwMDACMLlytiyTV4xMDBOYCRBsy13Z+PJdqUDAwPjBMbKYsQsmcsX0WbZIAYGxkaMX/muVYPWdO+jAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="next" href="/2017/11/18/Java语言特性/">Java语言特性</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

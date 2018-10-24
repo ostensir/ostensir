@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>hexo 搭建博客 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">hexo 搭建博客</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">hexo 搭建博客</h1><div class="post-meta">Aug 15, 2016<span> | </span><span class="category"><a href="/categories/hexo/">hexo</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2016/08/15/git+hexo搭建博客-A/#vcomment"><span class="valine-comment-count" data-xid="/2016/08/15/git+hexo搭建博客-A/"></span><span> 条评论</span></a><div class="post-content"><p>本次主要分为 <strong>注册</strong> 和 <strong>创建仓库</strong> 两个部分<br><strong>重要提示：</strong>因章节编排需要，所以部分重要内容放在最后，建议看完整篇文章再进行操作</p>
+<h2 id="注册-Github-账户"><a href="#注册-Github-账户" class="headerlink" title="注册 Github 账户"></a>注册 Github 账户</h2><h4 id="1-进入网址-https-github-com-进行注册"><a href="#1-进入网址-https-github-com-进行注册" class="headerlink" title="1. 进入网址 https://github.com/  进行注册"></a>1. 进入网址 <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a>  进行<a href="https://github.com/" target="_blank" rel="noopener">注册</a></h4><blockquote>
+<p><strong>Github 首页面：</strong><br>Username 填入自己喜欢的用户名<br>Email        填入要绑定账号的邮箱<br>Password  输入用户密码用户密码<br>Sign up for Github  单击来进行注册</p>
+</blockquote>
+<blockquote>
+<p><strong>Join Github 页面：</strong><br>点击下方的 Create an account 来创建账户<br>当你邮箱收到 Github 发来的邮件时即可关闭该页面</p>
+</blockquote>
+<h4 id="2-验证-Github-账户（邮箱）"><a href="#2-验证-Github-账户（邮箱）" class="headerlink" title="2.  验证 Github 账户（邮箱）"></a>2.  验证 Github 账户（邮箱）</h4><blockquote>
+<p><strong>邮箱页面：</strong><br>打开绑定的邮箱查看 github 发送的邮件<br>并点击邮件提供的链接即可进行完成验证</p>
+</blockquote>
+<blockquote>
+<p><strong>Learn Git and GitHub without any code 页面：</strong><br>该页面有两个选择：</p>
+<ul>
+<li>Read the guide（阅读指南）    </li>
+<li>Start a project （启动仓库）</li>
+</ul>
+</blockquote>
+<p>选择 Start a project 将自动带你进入创建仓库的页面</p>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><blockquote>
+<p><strong>仓库页面</strong></p>
+<ul>
+<li>Repository name 输入仓库名</li>
+<li>Description 仓库说明可忽略</li>
+<li>public 公开的免费的仓库</li>
+<li>Private 私人的收费的仓库</li>
+<li>要勾选  Installize this repository with a README ，则需要在 code 页面找到推送地址</li>
+<li>不勾选  Installize this repository with a README ，则直接在 code 页面显示推送地址</li>
+<li>关于许可证版权的默认即可！</li>
+</ul>
+</blockquote>
+<p>最后单击 <strong>Create repository</strong> 来创建仓库<br>至此仓库创建完成！！！</p>
+<p><strong>提示：</strong><br>仓库选择：看个人需要选择，一般 公开即可，这里以公开仓库为例<br>是否创建 <strong>Readme</strong> 文件：为了简化步骤这里我们不勾选创建 <strong>Readme</strong> 文件</p>
+<p><strong>简单介绍：</strong><br><strong>仓库主页面：</strong>从左往右依次是  <code>code lssues Pull requests Projects Wiki Insights Settings</code> 菜单</p>
+<ul>
+<li>code ： 博客的内容以后将放在该页面下</li>
+<li>Settings： 则是该仓库的一些设置选项</li>
+</ul>
+<p>请保留停留在 code 页面，把浏览器最小化 后面需要用到该页面提供的推送地址</p>
+<p><strong>重要提示：</strong></p>
+<ol>
+<li>qq 邮箱注册可能会被拦截 — 解决的办法自己 Baidu</li>
+<li>仓库名本身是随意的命名的</li>
+</ol>
+<ul>
+<li>使用 Github 简短域名仓库名的格式：<strong>用户名/用户名.github.io</strong></li>
+<li>使用购买的自定义域名：仓库的名字可随意</li>
+</ul>
+<blockquote>
+<p>本文永久连接: <a href="http://www.ostensir.org">http://www.ostensir.org</a></p>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2016/08/15/git+hexo搭建博客-A/" data-id="cjnn5im300007vrljslb8oy8v" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3a204EIRBF0fn/n24Tn0wU2KdgVGD300Snu1mYlHXh9cLX83l9/dz6yffftr7D7112yZAhY1vG0736DH5v+gS+NhkyZNzDIEE2ZRAMf+9gzTJkyJCBEz6yCJLXyZAhQ8Z8wG0tYubJf/B/Q4YMGVsx5hM7XnCuKphlyJBxD6M2GPidz2+fb8iQIePfM57SxZNCHkyn1iNDhoyjGf2lpAcv+s953yBBhgwZZzNqYZGXo2Qj0kbbD9+XIUPGNYz+a9Y24NJqdLARMmTIOJpRS9p4GK0tnSevzb+JDBkyDmLwJtrM+DAdSfLmXdDzkyFDxuYMnvzxHhcpR9NjFs17ZciQcTQjTdHSKJdmqbVyV4YMGTcw0gRxVSJIAm4wNpAhQ8Y1jDRozgwj0w0aBGUZMmQcyqg15fngkyd2PHFcNluQIUPGhoz+baTUTBt2vBk32CAZMmRcz+AYTk1Jg5XLkCHjAkY6sKy9GE0nwg1CMwoZMmRszpg5NsHDdJ+djjCLXUMZMmQcyphv4s8UtyT4FnuHMmTI2JZBbk6R6dExvsXN1FCGDBmHMuZLUN5ui8Po0tAvQ4aMHRlPeKV7k8LSICtDhowbGGmQrTXa0qECeZcMGTJuY5AgSw5JpAcv0rQS1eIyZMg4mjETZGt1c618HYwwZciQIWNp9y4N04O3yJAhQwZ4KE/71hbDMmTIuIfBwx9vpaWF6NShChkyZBzNSAcD/JW1YxY8TZyab8iQIWMPxgfu2BkGLolSsgAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2016/08/16/git+hexo搭建博客-C/">hexo 管理博客</a><a class="next" href="/2016/08/15/git+hexo搭建博客-B/">hexo 搭建博客</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

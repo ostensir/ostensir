@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Osten"><title>Git使用详解 | Osten Sir</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Git使用详解</h1><a id="logo" href="/.">Osten Sir</a><p class="description">www.ostensir.org</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Git使用详解</h1><div class="post-meta">Oct 18, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2017/10/18/Git/#vcomment"><span class="valine-comment-count" data-xid="/2017/10/18/Git/"></span><span> 条评论</span></a><div class="post-content"><h2 id="仓库-init-clone-remote"><a href="#仓库-init-clone-remote" class="headerlink" title="仓库 init,clone,remote"></a>仓库 init,clone,remote</h2><ol>
+<li><p><strong>创建仓库 : init</strong><br><strong>2. 初始化一个目录作为本地仓库 :</strong> <em>请在现有的目录下运行 <code>git init</code></em><br><strong>2. 初始化一个本地仓库指定目录 :</strong> <em>请在当前的目录下运行 <code>git init 目录</code></em><br><em>说明:</em><br><em>执行 git init 的结果会在指定的目录下产生一个 .git 子目录。</em><br><em>该子目录会在你以后对本项目的管理和控制期间起到了至关重要的作用。</em><br><em>该子目录保存了一系列重要的数据及信息以便于你可方便的控制本项目。</em><br><em>以后你在本项目下的所有和操作相关的数据信息都会保存在该子目录中。</em><br><em>此操作实际上是在本地开辟一个仓库并以目录的形式存放于本地磁盘中。</em></p>
+</li>
+<li><p><strong>克隆仓库 : clone</strong><br><strong>1. 进入路径再拷贝仓库 :</strong> <em>在现有的目录下运行 <code>git clone 仓库地址</code></em><br><strong>2. 在拷贝时重命名仓库 :</strong> _在当前的目录下运行 <code>git clone 仓库地址 新名字
+**3. 拷贝时选择一个路径 :** _在当前的目录下运行</code>git clone path/新名字<code>_
+_说明:_
+_该操作将远端/github的一个仓库克隆到本地并以项目名创建一个同名目录。_
+_如果没有指定仓库名和要保存路径则会在当前的目录下创建一个同名的仓库。_
+_克隆仓库之前它调用 init 对该目录进行初始化，使之包含有 .git 子目录。_
+_在初始化完本地仓库后则把当前项目状态信息拷贝下来保存到 .git 目录中。_
+_在这之后会把其他与项目相关的所有文件拷贝到当前已经初始化过的目录中。_
+_只要没有任何其他意外的话其克隆下来的仓库内容会和远端保持一致的结构。_
+_</code>git clone<code>支持很多种协议:_
+_HTTPS协议:</code><a href="https://github.com/username/repo.git`" target="_blank" rel="noopener">https://github.com/username/repo.git`</a>_<br><em>HTTP协议:   <code>http://github.com/username/repo.git</code></em><br><em>GIT 协议:    <code>git://github.com/username/repo.git</code></em><br><em>FTP 协议:    <code>ftp://github.com/username/repo.git</code></em><br><em>SSH 协议:    <code>ssh://github.com/username/repo.git</code></em><br><em>SSH 协议:    <a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:username/repo.git`</em><br><em>关于更多协议详细请参考<a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" title="跳转到阮一峰博客" target="_blank" rel="noopener">阮一峰博客</a></em></p>
+</li>
+<li><p><strong>关联仓库 : remote</strong><br><em>1. 显式本地仓库所关联的远端仓库名请在仓库目录下运行 <code>git remote</code></em><br><em>2. 显式本地仓库所关联的远端仓库名及地址请在仓库目录下运行 <code>git remote -v</code></em><br><em>3. 为本地仓库创建一个关联到远端仓库请在仓库目录下运行 <code>git add 远端库名 仓库地址</code></em><br><em>4. 删除本地仓库与远端仓库已经被创建的关联请在仓库目录下运行 <code>git rm 远端库名</code></em><br><em>说明:</em><br><em>1. 要关联一个仓库，则你必须要有一个本地仓库参考 1 和 2</em><br><em>2. 要关联一个仓库，远端/github页面上则必须创建一个已存在的仓库</em><br><em>3. git 仓库默认使用 origin 作为远端的仓库名，在 clone 的仓库会有此体现</em><br><em>4. 在创建关联时，远端仓库名可被自定义，其结果就是该名字与仓库地址相关联</em><br><em>5. 在远端/github网页上创建仓库时会给你一个地址，该地址则作为要关联的仓库地址</em><br><em>6. 创建关联的意思就是把本地，与 远端/github页面上的一个仓库进行同步</em><br><em>即关联后，你在仓库的所有操作，都可以通过 git push 更新到远端/github仓库</em></p>
+</li>
+</ol>
+<hr>
+<p><em>注意:</em><br><em>1. 一个已经被初始化的远程仓库，默认使用的远程名为 origin</em><br><em>2. 远端仓库名只是一个标识，可以理解为它是用于标识一个仓库</em><br><em>3. 远端仓库名与你在远端/github页面上创建的仓库名没有任何关系</em><br><em>4. 远端仓库名仅仅代表该名字是后面地址所指向的仓库，详见 git remote -v</em></p>
+<h2 id="跟踪文件-缓存文件-add"><a href="#跟踪文件-缓存文件-add" class="headerlink" title="跟踪文件/缓存文件 add"></a>跟踪文件/缓存文件 add</h2><ol>
+<li><strong>跟踪一个文件的内容 :</strong> <em>在仓库目录下运行 <code>git add 文件名</code></em></li>
+<li><strong>跟踪多个文件的内容 :</strong> <em>在仓库目录下运行 <code>git add 文件1 文件2 ...</code></em></li>
+<li><strong>跟踪所有文件的内容 :</strong> <em>在仓库目录下运行 <code>git add .</code>或<code>./</code>或<code>*</code></em></li>
+<li><strong>跟踪指定类型的文件 :</strong> <em>在仓库目录下运行 <code>git add *.后缀名</code></em></li>
+<li><strong>取消对文件内容跟踪 :</strong> <em>在仓库目录下运行 <code>git reset HEAD 文件名</code></em><br><em>说明 :</em><br><em>1. 跟踪文件也被称为缓存，实际上就是把该文件的当前状态进行保存</em><br><em>2. 该命令以 commit 作为一个开始，即 commit 之后与使用情况1相同</em><br><em>2. 在参考官方的资料中指明 add 命令只缓存文件的内容而不是文件</em><br><em>更多关于 add 的详细内容请参考<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93" title="gitbook-追踪新文件" target="_blank" rel="noopener">gitbook-追踪新文件</a></em><br><em>使用情况 :</em><br><em>1. 原有的文件没被修改，add 任何文件没有显示</em><br><em>2. 原有的文件已被修改，add 这个文件则会生效</em><br><em>3. 如果创建了一个文件，add 这个文件则会生效</em><br><em>4. 如果删除了一个文件，如果该文件之前不在缓存中，add 这个文件会失败，但不可恢复</em><br><em>5. 如果删除了一个文件，如果该文件之前已在缓存中，add 这个文件没提示，但可以恢复</em><br><em>6. 如果文件已在缓存中，修改该文件后没有add，在缓存中的文件依然是在修改之前的状态</em><br><em>7. 如果你把所有更改的文件都 add 到缓存中后再做一次提交，则 add 任何文件都没有提示</em></li>
+</ol>
+<h2 id="查看项目当前状态-查看缓存情况-status"><a href="#查看项目当前状态-查看缓存情况-status" class="headerlink" title="查看项目当前状态/查看缓存情况 status"></a>查看项目当前状态/查看缓存情况 status</h2><ol>
+<li><strong>详细查看项目的当前状态 :</strong> <em>在仓库目录下运行 <code>git status</code></em></li>
+<li><strong>精简查看项目的当前状态 :</strong> <em>在仓库目录下运行 <code>git status -s</code></em><br><em>说明 :</em><br><em>1. 该命令以一次 commit 为一个开始，即 commdit 之后与情况1相同</em><br><em>使用情况 :</em><br><em>1. 原有的文件没被修改，status 没有任何文件状态</em><br><em>2. 原有的文件已被修改，status 会列出该文件状态</em><br><em>3. 如果曾删了一个文件，status 会列出该文件状态</em><br><em>4. 当把一个文件 add 到缓存，status 则会显式该文件已经被缓存的状态</em><br><em>5. 当把缓存中的文件又修改， status 则会显式该文件的两个版本的状态</em><br><em>6. 当把所有改动的文件都 add 到缓存中时，status 则显示已缓存的文件</em><br><em>7. 如果你现在对所有缓存的文件做 commit，status 则会与情况 1 相同</em><br><em>8. 如果你现在再修改任意一个文件，status 则会列出该文件的当前状态</em><br><em>9. 如果把该文件恢复到原来的样子，status 则显示与情况 1 相同的状态</em></li>
+</ol>
+<hr>
+<p><em>关于 git status -s 的一部分文件状态标识 :</em><br><strong>?? :</strong> <em>表示已修改增加删除而未被跟踪的文件</em><br><strong>A  :</strong> <em>表示正在被跟踪的文件，即已在缓存中的文件</em><br><strong>AM :</strong> <em>M 在右边表示正在跟踪的文件被修改，但未把更改添加到缓存中</em><br><strong>M  :</strong> <em>M 在左边标识正在跟踪的文件被修改，但已把更改添加到缓存中</em><br><em>关于其他更多的标识请参考<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93" title="gitbook-状态简览" target="_blank" rel="noopener">gitbook-状态简览</a></em></p>
+<h2 id="查看已经提交的或尚未提交的文件更改情况-diff"><a href="#查看已经提交的或尚未提交的文件更改情况-diff" class="headerlink" title="查看已经提交的或尚未提交的文件更改情况 diff"></a>查看已经提交的或尚未提交的文件更改情况 diff</h2><ol>
+<li><strong>查看上次提交之后尚未缓存的所有更改 :</strong> <em>在项目目录下运行 <code>git diff</code></em></li>
+<li><strong>查看上次提交之后已经缓存的所有更改 :</strong> <em>在项目目录下运行 <code>git diff --cached</code></em></li>
+<li><strong>查看已经被缓存和未被缓存的所有更改 :</strong> <em>在项目目录下运行 <code>git diff HEAD</code></em><br><em>说明 :</em><br><em>1. 该命令以一次 commit 为一个开始，即 commit 之后与情况1相同</em><br><em>2. 该命令只对原有的文件起作用，新增加没有 add 过的文件不影响</em><br><em>3. 该该命令显示的是上一次 commit 后到与当前原有文件被更改情况</em><br><em>使用情况 :</em><br><em><strong>diff : 只显示原有的，然后被修改、删除的文件且尚未缓存的</strong></em><br><em>1. 原有的文件没被修改，无论有没 add，diff 则没有任何详细显示</em><br><em>2. 原有的文件已被修改，没有执行 add，diff 会详细显示删减什么</em><br><em>3. 原有的文件已被修改，但执行了 add，diff 则没有任何详细显示</em><br><em>4. 如果删除原有的文件，没有执行 add，diff 会详细显示删减什么</em><br><em>5. 对于刚创建的新文件，无论增删改查，diff 不受任何影响</em><br><em><strong>diff –cached 或 staged : 只显示commit 之后任何被 add 过的文件</strong></em><br><em>1. 原有的文件没被修改，无论有没 add，diff –cached/–staged 则没有任何详细显示</em><br><em>2. 原有的文件已被修改，没有执行 add，diff –cached/–staged 则没有任何详细显示</em><br><em>3. 原有的文件已被修改，但执行了 add，diff –cached/–staged 会详细显示删减什么</em><br><em>4. 如果删除原有的文件，diff –cached/–staged 显示的是在没被删之前的 add 的版本</em><br><em>4. 对于刚创建的新文件，无论增删改查，diff –cached/–staged 不受任何影响</em><br><em><strong>diff HEAD : 则根据以上的情况，同时输出 被 add 和 没 add 的文件</strong></em></li>
+</ol>
+<h2 id="提交更新-commit"><a href="#提交更新-commit" class="headerlink" title="提交更新 commit"></a>提交更新 commit</h2><ol>
+<li><strong>提交缓存内容并且自编辑提交信息 status :</strong> <em>在项目目录下运行 <code>git commit</code></em></li>
+<li><strong>提交缓存内容并且自编辑提交信息 diff   :</strong> <em>在项目目录下运行 <code>git commit -v</code></em></li>
+<li><strong>提交缓存内容的同时编辑提交信息 :</strong> <em>在项目目录下运行 <code>git commit -m &quot;提交信息&quot;</code></em></li>
+<li><strong>先add到缓存后再提交缓存的内容 :</strong> <em>在项目目录下运行 <code>git commit -a</code></em></li>
+<li><strong>撤销对此次从缓存中所提交的内容 :</strong> <em>在项目目录下运行 <code>git commit --amend</code></em></li>
+</ol>
+<h2 id="查看、创建、删除、切换、合并-分支-branch-checkout"><a href="#查看、创建、删除、切换、合并-分支-branch-checkout" class="headerlink" title="查看、创建、删除、切换、合并 分支 branch,checkout"></a>查看、创建、删除、切换、合并 分支 branch,checkout</h2><ol>
+<li><strong>查看所有分支以及所在的分支 :</strong> <em>在项目目录下运行 <code>git branch</code></em></li>
+<li><strong>在主分支下建立一个新的分支 :</strong> <em>在项目目录下运行 <code>git branch 分支名</code></em></li>
+<li><strong>删除一个已有的分支及其数据 :</strong> <em>在项目目录下运行 <code>git branch -d 分支名</code></em></li>
+<li><strong>在所有的分支之间来回的切换 :</strong> <em>在项目目录下运行 <code>git checkout 分支名</code></em></li>
+<li><strong>创建新的分支并切换到该分支 :</strong> <em>在项目目录下运行 <code>git checkout -b 分支名</code></em></li>
+<li><strong>合并另外一个分支到当前分支 :</strong> <em>在项目目录下运行 <code>git merge 分支名</code></em></li>
+</ol>
+<h2 id="移除文件-rm"><a href="#移除文件-rm" class="headerlink" title="移除文件 rm"></a>移除文件 rm</h2><ol>
+<li><strong>移除缓存区与本地的文件 :</strong> <em>在项目目录下运行 <code>git rm 文件名</code></em></li>
+<li><strong>只移除缓存区里面的文件 :</strong> <em>在项目目录下运行 <code>git rm --cached 文件名</code></em></li>
+<li><strong>更方便的性移除多个文件 :</strong> <em>在项目目录下运行 <code>git rm *.后缀名</code></em></li>
+</ol>
+<h2 id="移动文件-更改文件名-mv"><a href="#移动文件-更改文件名-mv" class="headerlink" title="移动文件/更改文件名 mv"></a>移动文件/更改文件名 mv</h2><ol>
+<li><strong>更新一个文件名 :</strong> <em>在项目目录下运行 <code>git mv 源文件 新名字</code></em></li>
+</ol>
+<h2 id="查看提交历史-log"><a href="#查看提交历史-log" class="headerlink" title="查看提交历史 log"></a>查看提交历史 log</h2><ol>
+<li><strong>查看所有的提交历史记录 :</strong> <em>在项目目录下运行 <code>git log</code></em></li>
+<li><strong>精简查看所有的提交历史 :</strong> <em>在项目目录下运行 <code>git log --stat</code></em></li>
+<li><strong>查看提交历史内容的差异 :</strong> <em>在项目目录下运行 <code>git log -p</code></em></li>
+<li><strong>查看最近3 次的提交记录 :</strong> <em>在项目目录下运行 <code>git log -3</code></em></li>
+<li><strong>查看提交历史格式化输出 :</strong> <em>在项目目录下运行 <code>git log --pretty=选项</code></em><br>关于 –pretty=选项</li>
+<li><code>--pretty=oneline</code> <em>每次提交显示为一行</em></li>
+<li><code>--pretty=format:&quot;占位符&quot;</code> <em>定制显示记录的格式</em></li>
+<li><em>一个带占位符的例子 :</em><code>git pretty=format:&quot;%h - %an, %ar : %s&quot;</code><br>关于 format 选项的占位符<br><strong>%H  :</strong> <em>提交对象(commit)的完整哈希字串</em><br><strong>%h  :</strong> <em>提交对象的简短哈希字串</em><br><strong>%T  :</strong> <em>树对象(tree)的完整哈希字串</em><br><strong>%t  :</strong> <em>树对象的简短哈希字串</em><br><strong>%P  :</strong> <em>父对象(parent)的完整哈希字串</em><br><strong>%p  :</strong> <em>父对象的简短哈希字串</em><br><strong>%an :</strong> <em>作者(author)的名字</em><br><strong>%ae :</strong> <em>作者的电子邮件地址</em><br><strong>%ad :</strong> <em>作者修订日期(可以用 –date= 选项定制格式)</em><br><strong>%ar :</strong> <em>作者修订日期,按多久以前的方式显示</em><br><strong>%cn :</strong> <em>提交者(committer)的名字</em><br><strong>%ce :</strong> <em>提交者的电子邮件地址</em><br><strong>%cd :</strong> <em>提交日期</em><br><strong>%cr :</strong> <em>提交日期,按多久以前的方式显示</em><br><strong>%s  :</strong> <em>提交说明</em></li>
+</ol>
+</div><iframe src="/donate/?AliPayQR=/img/alipay.jpg&amp;WeChatQR=/img/wechat.jpg&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.ostensir.org/2017/10/18/Git/" data-id="cjnn5im57000xvrlj9iemeyje" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aQW7EIAwF0Nz/0um2m9BvO6BUeqyqmUx4dGHhD9cVj/vXePpk/eTTO68dAxcXd8y9l2P9zBqazJIbcHFxz3PXhab6zLrkjYodLi7uJ7mTyZLl4eLi/l/u09ak2sXg4uJ+mZs0J734I3l+S6+Gi4s74E6Kzlt/b8l3cXFxW9y7OJKYo3foEs2Oi4t7hJsXlAkieVs+Ly4u7m5u8rM89Ky2MflxbGGVuLi4Y+4aUYXmS30ty8HFxd3GTZqZPKnItzL59ggXF/cL3GpWOV9kYcG4uLibub2j02Tr04tQ/9hI4eLiHuHmYWg12ugtJpoXFxf3ILccWcaXM/J4pdD84OLiHuTmxxvJZmhS1KJChouLu407P1CpblyS8DT6F+Di4m7j9o5C393Q5BJcXNzz3HmE0XtPIbTFxcU9zs1HtY3pvbn+NS4u7pTba12qxWh+XQMXF/ckt1pcqgUrv8aRBLW4uLgnuZPGpndoWv12dKqDi4s74FbLUK86VitolO/i4uJ+jDtpaarlEhcX98vc3iWqSQgyKmS4uLgDbi/cTIpRci0jv+SBi4t7hts7Up20N/n0o3wXFxe3w/0BAjjiMS9x08oAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2017/11/18/Java语言特性/">Java语言特性</a><a class="next" href="/2017/06/24/引用-C++/">C++ 引用</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'true' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'GHxGLiMoBO3IDgY1EGD6NxiO-gzGzoHsz',
+  appKey:'oMcwvA8ALFdfu8OdGKvUTX0H',
+  placeholder:'请输入用户名然后开始评论，为了便于与你联系请添加你的邮箱',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-系列/">Java 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown-系列/">Markdown 系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">3</span></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Osten Sir.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
